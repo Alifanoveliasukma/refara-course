@@ -55,7 +55,12 @@
 
 <div class="login-container">
     <h2>Login</h2>
-    <form action="/proseslogin" method="POST">
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+    <form action="/proses-login" method="POST">
         @csrf
         <div class="form-group">
             <label for="email">Email:</label>
