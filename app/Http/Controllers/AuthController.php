@@ -52,7 +52,7 @@ class AuthController extends Controller
 
         Auth::login($peserta);
 
-        return redirect('/login')->with('success', 'Pendaftaran berhasil!');;
+        return redirect('/login')->with('success', 'Pendaftaran berhasil!');
     }
 
     public function halaman_login_peserta()
