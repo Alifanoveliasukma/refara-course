@@ -39,26 +39,36 @@ class KursusController extends Controller
             return redirect('/kursus/list-kursus');
         }
 
-    public function edit_kursus(Kursus $kursus
-    )
+    public function edit_kursus(Request $request, $id)
     {
-        // $kursus = Kursus::findorfail($id);
+        $kursus = Kursus::find($id);
         return view('kursus.edit-kursus',compact('kursus'));
     }
 
 
-    public function update_kursus(Request $request, Kursus $kursus, $id)
+    public function update_kursus(Request $request, $id)
     {
-        $request->validate([
-            'nama_kursus' => ['required', 'string', 'max:255'],
-            'nama_pembuat' => ['required', 'string', 'max:255'],
-            'deskripsi_kursus' => ['required', 'string'],
-            'harga_kursus' => ['required', 'integer', 'min:0']
+        $this->validate($request, [
+            'nama_kursus' => 'required|string|min:5',
+            'nama_pembuat' => 'required|string|min:5',
+            'deskripsi_kursus'   => 'required|string|min:10',
+            'harga_kursus' => 'required|numeric'
         ]);
-
-        // $kursus = Kursus::findorfail($id);
-        $kursus->update($request->all());
-        return redirect('/kursus/list-kursus')->with('success', 'Kursus telah terupdate');
+        
+        // Dapatkan kursus berdasarkan ID
+        $kursus = Kursus::findOrFail($id);
+        
+        // Perbarui kursus tanpa gambar
+        $kursus->update([
+            'nama_kursus'       => $request->nama_kursus,
+            'nama_pembuat'       => $request->nama_pembuat,
+            'deskripsi_kursus'  => $request->deskripsi_kursus,
+            'harga_kursus'      => $request->harga_kursus
+        ]);
+        
+        // Redirect ke halaman index
+        return redirect('/kursus/list-kursus')->with(['success' => 'Data berhasil diubah!']);
+        
     }
 
 }

@@ -1,5 +1,8 @@
-<form action="/kursus/proses-edit" method="POST">
+<form action="/kursus/proses-edit/{{$kursus->id}}" method="POST">
     @csrf
+    @method('PUT')
+
+    <!-- Bagian lain dari formulir -->
     <div>
         <label for="nama_kursus">Nama Kursus:</label>
         <input type="text" id="nama_kursus" name="nama_kursus" required value="{{ $kursus->nama_kursus }}">
@@ -10,7 +13,7 @@
     </div>
     <div>
         <label for="deskripsi_kursus">Deskripsi Kursus:</label>
-        <textarea id="deskripsi_kursus" name="deskripsi_kursus" required value="{{ $kursus->deskripsi_kursus }}"></textarea>
+        <textarea id="deskripsi_kursus" name="deskripsi_kursus" required>{{ $kursus->deskripsi_kursus }}</textarea>
     </div>
     <div>
         <label for="harga_kursus">Harga Kursus:</label>
