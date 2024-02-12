@@ -26,6 +26,8 @@ Route::get('/panel/dashboard-panel',[AuthController::class, 'panel_dashboard']);
 Route::get('/kursus/list-kursus',[KursusController::class, 'list_kursus']);
 Route::get('/kursus/create-kursus',[KursusController::class, 'create_kursus']);
 Route::post('/kursus/proses-create',[KursusController::class, 'store_kursus']);
+Route::get('/kursus/edit-kursus',[KursusController::class, 'edit_kursus']);
+Route::put('/kursus/proses-edit',[KursusController::class, 'update_kursus']);
 
 // peserta
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
