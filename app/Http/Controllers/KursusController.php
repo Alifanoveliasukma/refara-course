@@ -38,4 +38,27 @@ class KursusController extends Controller
             // Redirect ke halaman yang sesuai
             return redirect('/kursus/list-kursus');
         }
+
+    public function edit_kursus(Kursus $kursus
+    )
+    {
+        // $kursus = Kursus::findorfail($id);
+        return view('kursus.edit-kursus',compact('kursus'));
+    }
+
+
+    public function update_kursus(Request $request, Kursus $kursus, $id)
+    {
+        $request->validate([
+            'nama_kursus' => ['required', 'string', 'max:255'],
+            'nama_pembuat' => ['required', 'string', 'max:255'],
+            'deskripsi_kursus' => ['required', 'string'],
+            'harga_kursus' => ['required', 'integer', 'min:0']
+        ]);
+
+        // $kursus = Kursus::findorfail($id);
+        $kursus->update($request->all());
+        return redirect('/kursus/list-kursus')->with('success', 'Kursus telah terupdate');
+    }
+
 }
