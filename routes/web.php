@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KursusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 // panel
 Route::get('/panel', [AuthController::class, 'login_panel']);
 Route::post('/proses-login-panel',[AuthController::class, 'proses_login_panel']);
-Route::get('/panel/dashboard_panel',[AuthController::class, 'panel_dashboard']);
+Route::get('/panel/dashboard-panel',[AuthController::class, 'panel_dashboard']);
+
+// owner
+Route::get('/kursus/list-kursus',[KursusController::class, 'list_kursus']);
+Route::get('/kursus/create-kursus',[KursusController::class, 'create_kursus']);
+Route::post('/kursus/proses-create',[KursusController::class, 'store_kursus']);
 
 // peserta
 Route::get('/', function () {
