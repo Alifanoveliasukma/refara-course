@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 // panel
 Route::get('/panel', [AuthController::class, 'login_panel']);
 Route::post('/proses-login-panel',[AuthController::class, 'proses_login_panel']);
+Route::get('/proses-logout-panel',[AuthController::class, 'proses_logout_panel']);
 Route::get('/panel/dashboard-panel',[AuthController::class, 'panel_dashboard']);
 
 // owner

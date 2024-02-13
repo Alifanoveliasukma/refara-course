@@ -33,6 +33,8 @@
     <nav class="navbar">
         <a href="/panel/kursus/list-kursus">Home</a>
         <a href="/panel/kursus/create-kursus">Create Kursus</a>
+        <a href="#">halaman owner</a>
+        <a href="/proses-logout-panel">logout</a>
     </nav>
 
     <!-- List Kursus -->

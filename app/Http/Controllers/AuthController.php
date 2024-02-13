@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kursus;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,9 +92,17 @@ class AuthController extends Controller
         }
     }
 
+    public function proses_logout_panel(){ 
+        if(Auth::guard('user')->check()){
+            Auth::guard('user')->logout();
+            return redirect('/panel');
+        }
+    }
+
     public function panel_dashboard()
     {
-        return view('panel.dashboard');
+        $list_kursus = Kursus::all();
+        return view('kursus.index', compact('list_kursus'));
     }
 
     
