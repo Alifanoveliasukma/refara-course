@@ -35,7 +35,7 @@ Route::middleware(['auth:user'])->group(function(){
     Route::post('/panel/kursus/proses-create',[KursusController::class, 'store_kursus']);
     Route::get('/panel/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);
     Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
-    Route::get('/panel/laporan-dari-manager', [PanelController::class, 'laporan_manager']);
+    
     });
 
 
