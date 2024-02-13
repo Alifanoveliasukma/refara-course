@@ -54,7 +54,7 @@
 <body>
 
 <div class="login-container">
-    <h2>Login</h2>
+    <h2>Login peserta</h2>
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
