@@ -70,6 +70,13 @@ class AuthController extends Controller
         }
     }
 
+    public function proseslogout(){
+        if(Auth::guard('peserta')->check()){
+            Auth::guard('peserta')->logout();
+            return redirect('/');
+        }
+    }
+
     public function index()
     {
         return view('peserta.dashboard');

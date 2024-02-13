@@ -34,6 +34,7 @@
         <a href="#">halaman owner</a>
         <a href="/proses-logout-panel">logout</a>
         <a href="/panel/laporan-dari-manager">laporan dari manager</a>
+        <a href="#">anda login sebagai : {{ Auth::user()->name }}</a>
     </nav>
 
     <!-- List Kursus -->
