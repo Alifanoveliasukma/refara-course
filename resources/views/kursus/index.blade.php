@@ -33,6 +33,7 @@
         <a href="/panel/kursus/create-kursus">Create Kursus</a>
         <a href="#">halaman owner</a>
         <a href="/proses-logout-panel">logout</a>
+        <a href="/panel/laporan-dari-manager">laporan dari manager</a>
     </nav>
 
     <!-- List Kursus -->

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KursusController;
+use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::get('/panel/kursus/create-kursus',[KursusController::class, 'create_kursu
 Route::post('/panel/kursus/proses-create',[KursusController::class, 'store_kursus']);
 Route::get('/panel/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);
 Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
+Route::get('/panel/laporan-dari-manager', [PanelController::class, 'laporan_manager']);
 
 // peserta
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
