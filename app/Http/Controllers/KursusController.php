@@ -74,8 +74,8 @@ class KursusController extends Controller
     {
         $kursus = Kursus::find($id);
         $kursus->delete();
-        return redirect('/kursus/list-kursus')
-                ->withSuccess('Kursus telah terdelete.');
+        return redirect('/panel/kursus/list-kursus')
+                ->withSuccess('Kursus telah terdelete');
     }
 
 }
