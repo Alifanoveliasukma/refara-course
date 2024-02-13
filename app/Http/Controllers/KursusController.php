@@ -46,29 +46,28 @@ class KursusController extends Controller
     }
 
 
-    public function update_kursus(Request $request, $id)
+    public function proses_edit_kursus(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate([
             'nama_kursus' => 'required|string|min:5',
-            'nama_pembuat' => 'required|string|min:5',
-            'deskripsi_kursus'   => 'required|string|min:10',
-            'harga_kursus' => 'required|numeric'
+            'nama_pembuat' => 'required|string',
+            'deskripsi_kursus' => 'required|string|min:10',
+            'harga_kursus' => 'required|numeric',
         ]);
-        
-        // Dapatkan kursus berdasarkan ID
+
+        // Temukan kursus yang akan diubah berdasarkan ID
         $kursus = Kursus::findOrFail($id);
-        
-        // Perbarui kursus tanpa gambar
+
+        // Update data kursus
         $kursus->update([
-            'nama_kursus'       => $request->nama_kursus,
-            'nama_pembuat'       => $request->nama_pembuat,
-            'deskripsi_kursus'  => $request->deskripsi_kursus,
-            'harga_kursus'      => $request->harga_kursus
+            'nama_kursus' => $request->nama_kursus,
+            'nama_pembuat' => $request->nama_pembuat,
+            'deskripsi_kursus' => $request->deskripsi_kursus,
+            'harga_kursus' => $request->harga_kursus,
         ]);
-        
-        // Redirect ke halaman index
-        return redirect('/kursus/list-kursus')->with(['success' => 'Data berhasil diubah!']);
-        
+
+        // Redirect ke halaman index atau halaman lainnya setelah berhasil diubah
+        return redirect('/kursus/list-kursus');
     }
 
 }

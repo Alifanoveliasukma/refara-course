@@ -27,7 +27,7 @@ Route::get('/kursus/list-kursus',[KursusController::class, 'list_kursus']);
 Route::get('/kursus/create-kursus',[KursusController::class, 'create_kursus']);
 Route::post('/kursus/proses-create',[KursusController::class, 'store_kursus']);
 Route::get('/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);
-Route::put('/kursus/proses-edit/{id}',[KursusController::class, 'update_kursus'])->name('kursus.update');
+Route::put('/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
 
 // peserta
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
