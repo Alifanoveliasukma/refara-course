@@ -1,4 +1,4 @@
-<form action="/kursus/proses-create" method="POST">
+<form action="/panel/kursus/proses-create" method="POST">
     @csrf
     <div>
         <label for="nama_kursus">Nama Kursus:</label>

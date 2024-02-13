@@ -36,7 +36,7 @@ class KursusController extends Controller
             ]);
     
             // Redirect ke halaman yang sesuai
-            return redirect('/kursus/list-kursus');
+            return redirect('/panel/kursus/list-kursus');
         }
 
     public function edit_kursus(Request $request, $id)

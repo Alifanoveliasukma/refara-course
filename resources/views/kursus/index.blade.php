@@ -29,8 +29,8 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/">Home</a>
-        <a href="/kursus/create-kursus">Create Kursus</a>
+        <a href="/panel/kursus/list-kursus">Home</a>
+        <a href="/panel/kursus/create-kursus">Create Kursus</a>
     </nav>
 
     <!-- List Kursus -->
@@ -38,7 +38,7 @@
     <ul class="list-kursus">
         @foreach ($list_kursus as $item)
             <li>Kursus: {{$item->nama_kursus}} 
-            <a href="/kursus/edit-kursus/{{$item->id}}">edit</a>
+            <a href="/panel/kursus/edit-kursus/{{$item->id}}">edit</a>
             </li>
         @endforeach
     </ul>
