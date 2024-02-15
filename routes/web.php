@@ -36,6 +36,7 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/panel/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);
     Route::delete('/panel/kursus/delete-kursus/{id}',[KursusController::class, 'delete_kursus'])->name('kursus.delete');
     Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
+    Route::get('/panel/laporan-dari-manager', [PanelController::class, 'laporan_manager']);
     
     });
 
@@ -43,6 +44,8 @@ Route::middleware(['auth:user'])->group(function(){
 Route::middleware(['guest:peserta'])->group(function () {
     Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
     Route::post('/proses-login',[AuthController::class, 'proseslogin']);
+    Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
+    Route::post('/proses-register', [AuthController::class, 'proses_register_peserta'])->name('register');
 });
 
 Route::middleware(['auth:peserta'])->group(function(){
@@ -50,11 +53,8 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/dashboard',[AuthController::class, 'index']);
 });
 
-// peserta
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 
-Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
 
-Route::post('/proses-register', [AuthController::class, 'proses_register_peserta'])->name('register');
 
 
