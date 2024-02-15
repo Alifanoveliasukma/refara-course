@@ -41,33 +41,44 @@ class KursusController extends Controller
 
     public function edit_kursus(Request $request, $id)
     {
-        $kursus = Kursus::find($id);
+        $kursus = Kursus::findorfail($id);
         return view('kursus.edit-kursus',compact('kursus'));
     }
 
 
     public function proses_edit_kursus(Request $request, $id)
     {
-        $request->validate([
-            'nama_kursus' => 'required|string|min:5',
-            'nama_pembuat' => 'required|string',
-            'deskripsi_kursus' => 'required|string|min:10',
-            'harga_kursus' => 'required|numeric',
-        ]);
 
-        // Temukan kursus yang akan diubah berdasarkan ID
-        $kursus = Kursus::findOrFail($id);
+        $kursus = Kursus::findorfail($id);
+        $kursus->update($request->all());
+        // $request->validate([
+        //     'nama_kursus' => 'required|string|min:5',
+        //     'nama_pembuat' => 'required|string',
+        //     'deskripsi_kursus' => 'required|string|min:10',
+        //     'harga_kursus' => 'required|numeric',
+        // ]);
 
-        // Update data kursus
-        $kursus->update([
-            'nama_kursus' => $request->nama_kursus,
-            'nama_pembuat' => $request->nama_pembuat,
-            'deskripsi_kursus' => $request->deskripsi_kursus,
-            'harga_kursus' => $request->harga_kursus,
-        ]);
+        // // Temukan kursus yang akan diubah berdasarkan ID
+        // $kursus = Kursus::findOrFail($id);
+
+        // // Update data kursus
+        // $kursus->update([
+        //     'nama_kursus' => $request->nama_kursus,
+        //     'nama_pembuat' => $request->nama_pembuat,
+        //     'deskripsi_kursus' => $request->deskripsi_kursus,
+        //     'harga_kursus' => $request->harga_kursus,
+        // ]);
 
         // Redirect ke halaman index atau halaman lainnya setelah berhasil diubah
-        return redirect('/kursus/list-kursus');
+        return redirect('panel/kursus/list-kursus');
+    }
+
+    public function delete_kursus($id)
+    {
+        $kursus = Kursus::find($id);
+        $kursus->delete();
+        return redirect('/panel/kursus/list-kursus')
+                ->withSuccess('Kursus telah terdelete');
     }
 
 }
