@@ -30,13 +30,14 @@
     <nav class="navbar">
         @if (Auth::guard('peserta')->guest())
             <a href="{{ route('login') }}">Login Peserta</a>
-            <a href="{{ route('register') }}">Register</a>
-            <a href="#">Halaman Landing Page</a>
+            <a href="/register">Register</a>
+            <a href="/landing-page">Halaman Landing Page</a>
         @else
-            <a href="/dashboard">Home</a>
+            <a href="/">Refara</a>
             <a href="#">Halaman Peserta</a>
-            {{ Auth::guard('peserta')->user()->name }}
+            <a href="#">Peserta bernama:  {{ Auth::guard('peserta')->user()->nama }}</a>
             <a href="/proses-logout-peserta">Logout</a>
+            <a href="/pesan/checkout"><i class="fa fa-shopping-cart">sd</i></a>
             <a href="/panel/kursus/create-kursus">Cek Fitur Owner</a>
         @endif
     </nav>

@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pesanan', function (Blueprint $table) {
+        Schema::create('pesanan_detail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_peserta')->nullable();
-            $table->string('status');
-            $table->date('tanggal');
+            $table->unsignedBigInteger('kursus_id')->nullable();
+            $table->unsignedBigInteger('pesanan_id')->nullable();
+            $table->integer('jumlah');
             $table->integer('jumlah_harga');
             $table->timestamps();
 
-            $table->foreign('id_peserta')->references('id')->on('list_peserta');
+            $table->foreign('kursus_id')->references('id')->on('content_course');
+            $table->foreign('pesanan_id')->references('id')->on('pesanan');
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pivot_pesanan');
+        Schema::dropIfExists('pesanan_detail');
     }
 };

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\PesanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +52,10 @@ Route::middleware(['guest:peserta'])->group(function () {
 Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/proses-logout-peserta',[AuthController::class, 'proseslogout']);
     Route::get('/dashboard',[AuthController::class, 'index']);
+
+    // Pesanan
+    Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
+    Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
 });
 
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
