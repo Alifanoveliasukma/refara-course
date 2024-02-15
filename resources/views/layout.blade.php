@@ -35,7 +35,7 @@
             <a href="{{ route('register') }}">Register</a>
             <a href="{{ route('landing') }}">Halaman Landing Page</a>
         @else
-            <a href="/dashboard">Home</a>
+            <a href="/">Refara</a>
             <a href="#">Halaman Peserta</a>
             {{ Auth::guard('peserta')->user()->name }}
             <a href="/proses-logout-peserta">Logout</a>
