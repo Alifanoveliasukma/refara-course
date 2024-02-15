@@ -16,7 +16,8 @@ class AuthController extends Controller
 
     public function landing_page()
     {
-        return view('landing_page.landing_page');
+        $list_kursus = Kursus::all();
+        return view('landing_page.landing_page', compact('list_kursus'));
     }
 
     public function registrasi()
