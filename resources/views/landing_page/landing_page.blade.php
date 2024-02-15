@@ -12,7 +12,7 @@
     <h4>Kumpulan course yang menarik</h4>
     @foreach ($list_kursus as $item)
     <li>Kursus: {{$item->nama_kursus}} 
-    <a href="/panel/kursus/edit-kursus/{{$item->id}}">detail</a>
+    <a href="/detail-kursus/{{$item->id}}">detail</a>
     <a href="#">masukan keranjang</a>
     </li>
 @endforeach
