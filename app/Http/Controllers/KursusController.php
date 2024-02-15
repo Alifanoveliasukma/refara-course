@@ -36,7 +36,7 @@ class KursusController extends Controller
             ]);
     
             // Redirect ke halaman yang sesuai
-            return redirect('/panel/kursus/list-kursus');
+            return redirect('/panel/kursus/list-kursus')->with('success', 'Kursus Telah Berhasil!');
         }
 
     public function edit_kursus(Request $request, $id)
@@ -78,7 +78,7 @@ class KursusController extends Controller
         $kursus = Kursus::find($id);
         $kursus->delete();
         return redirect('/panel/kursus/list-kursus')
-                ->withSuccess('Kursus telah terdelete');
+                ->withSuccess('Kursus Berhasil Di Delete!');
     }
 
 }
