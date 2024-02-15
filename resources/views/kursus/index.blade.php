@@ -2,6 +2,11 @@
 @section('content')
     <!-- List Kursus -->
     <h2>Kumpulan Kursus</h2>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     <ul class="list-kursus">
         @foreach ($list_kursus as $item)
             <li>Kursus: {{$item->nama_kursus}} 

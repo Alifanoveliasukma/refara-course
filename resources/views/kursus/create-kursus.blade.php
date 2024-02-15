@@ -1,5 +1,7 @@
 @extends('layout')
 @section('content')
+
+
 <form action="/panel/kursus/proses-create" method="POST">
     @csrf
     <div>
