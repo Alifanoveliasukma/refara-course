@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -18,6 +19,22 @@ class AuthController extends Controller
     {
         $list_kursus = Kursus::all();
         return view('landing_page.landing_page', compact('list_kursus'));
+    }
+
+    public function search(Request $request)
+    {
+    // menangkap data search
+    $list_kursus = Kursus::all();
+    $search = $request->search;
+    
+        // mengambil data dari table pegawai sesuai pencarian data
+    $kursus = DB::table('content_course')
+    ->where('nama_kursus','like',"%".$search."%")
+    ->paginate();
+    
+        // mengirim data pegawai ke view landing_page
+    return view('landing_page.landing_page', compact('kursus','list_kursus'));
+    
     }
 
     public function registrasi()

@@ -64,6 +64,8 @@ Route::middleware(['auth:peserta'])->group(function(){
     
 });
 
+Route::get('/search', [AuthController::class, 'search']);
+
 
 
 

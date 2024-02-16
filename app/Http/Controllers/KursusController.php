@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kursus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KursusController extends Controller
 {
@@ -11,6 +12,7 @@ class KursusController extends Controller
     {
         $list_kursus = Kursus::all();
         return view('kursus.index', compact('list_kursus'));
+        
     }
     public function create_kursus()
     {
@@ -80,5 +82,9 @@ class KursusController extends Controller
         return redirect('/panel/kursus/list-kursus')
                 ->withSuccess('Kursus Berhasil Di Delete!');
     }
+
+
+
+    
 
 }
