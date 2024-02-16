@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Kursus;
 use Illuminate\Http\Request;
 
@@ -9,12 +10,13 @@ class KursusController extends Controller
 {
     public function list_kursus()
     {
-        $list_kursus = Kursus::all();
+        $list_kursus = Kursus::with('category')->latest()->paginate(10);;
         return view('kursus.index', compact('list_kursus'));
     }
     public function create_kursus()
     {
-        return view('kursus.create-kursus');
+        $category = Category::all();
+        return view('kursus.create-kursus', compact('category'));
     }
 
     public function store_kursus(Request $request)
@@ -24,7 +26,8 @@ class KursusController extends Controller
                 'nama_kursus' => ['required', 'string', 'max:255'],
                 'nama_pembuat' => ['required', 'string', 'max:255'],
                 'deskripsi_kursus' => ['required', 'string'],
-                'harga_kursus' => ['required', 'integer', 'min:0']
+                'harga_kursus' => ['required', 'integer', 'min:0'],
+                'category_id' => 'required|exists:App\Models\Category,id',
             ]);
     
             // Simpan data kursus ke database
@@ -32,7 +35,8 @@ class KursusController extends Controller
                 'nama_kursus' => $request->nama_kursus,
                 'nama_pembuat' => $request->nama_pembuat,
                 'deskripsi_kursus' => $request->deskripsi_kursus,
-                'harga_kursus' => $request->harga_kursus
+                'harga_kursus' => $request->harga_kursus,
+                'category_id' => $request->category_id,
             ]);
     
             // Redirect ke halaman yang sesuai
@@ -42,7 +46,8 @@ class KursusController extends Controller
     public function edit_kursus(Request $request, $id)
     {
         $kursus = Kursus::findorfail($id);
-        return view('kursus.edit-kursus',compact('kursus'));
+        $category = Category::all();
+        return view('kursus.edit-kursus',compact('kursus', 'category'));
     }
 
 
