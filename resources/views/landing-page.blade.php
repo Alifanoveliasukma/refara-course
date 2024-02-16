@@ -27,6 +27,7 @@
     </style>
 </head>
 <body>
+    
     <nav class="navbar">
         @if (Auth::guard('peserta')->guest())
             <a href="{{ route('login') }}">Login Peserta</a>
@@ -34,11 +35,19 @@
             <a href="/landing-page">Halaman Landing Page</a>
         @else
             <a href="/">Refara</a>
-            <a href="#">Halaman Peserta</a>
+            <a href="/dashboard">Halaman Peserta</a>
             <a href="#">Peserta bernama:  {{ Auth::guard('peserta')->user()->nama }}</a>
             <a href="/proses-logout-peserta">Logout</a>
-            <a href="/pesan/checkout"><i class="fa fa-shopping-cart">sd</i></a>
-            <a href="/panel/kursus/create-kursus">Cek Fitur Owner</a>
+            <?php
+                $pesanan_utama = App\Models\Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
+
+                if ($pesanan_utama) {
+                    $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
+                    echo '<a href="/checkout">kursus yang masuk keranjang ' . $notif . '</a>';
+                } else {
+                    echo '<a href="/pesan/checkout"></a>';
+                }
+                ?>
         @endif
     </nav>
 
