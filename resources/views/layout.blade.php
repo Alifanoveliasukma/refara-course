@@ -50,8 +50,6 @@
                     echo '<a href="/pesan/checkout"></a>';
                 }
                 ?>
-
-            <a href="/pesan/checkout"><i class="fa fa-shopping-cart">kursus yang masuk keranjang {{$notif}}</i></a>
         @endif
     </nav>
     @endif

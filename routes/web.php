@@ -47,6 +47,8 @@ Route::middleware(['guest:peserta'])->group(function () {
     Route::post('/proses-login',[AuthController::class, 'proseslogin']);
     Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
     Route::post('/proses-register', [AuthController::class, 'proses_register_peserta'])->name('register');
+    
+
 });
 
 Route::middleware(['auth:peserta'])->group(function(){
@@ -56,9 +58,12 @@ Route::middleware(['auth:peserta'])->group(function(){
     // Pesanan
     Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
+    Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
+    Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
+    Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+    
 });
 
-Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 
 
 

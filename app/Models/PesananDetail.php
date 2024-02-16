@@ -18,4 +18,14 @@ class PesananDetail extends Model
         'jumlah_harga'
     ];
 
+    public function kursus()
+	{
+	      return $this->belongsTo(Kursus::class,'kursus_id', 'id');
+	}
+
+	public function pesanan()
+	{
+	      return $this->belongsTo(Pesanan::class,'pesanan_id', 'id');
+	}
+
 }
