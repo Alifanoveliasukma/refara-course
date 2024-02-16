@@ -22,7 +22,7 @@
         <td>
             <form action="/pesan/{{$kursus->id}}" method="post">
                 @csrf 
-                <input type="text" name="jumlah_pesan" class="form-control" required="">
+                <input type="hidden" name="jumlah_pesan" class="form-control" required="" value="1">
                 <button type="submit" >Masukkan keranjang</button>
             </form>
         </td>
