@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kursus;
+use App\Models\Payment;
+use App\Models\Pesanan;
+use App\Models\PesananDetail;
 use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -80,7 +83,20 @@ class AuthController extends Controller
 
     public function index()
     {
-        return view('peserta.dashboard');
+        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->first();
+
+        if ($pesanan && $pesanan->status == 1) {
+            // Jika status pesanan adalah 1, tampilkan data yang diminta
+            $list_kursus = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+            return view('peserta.dashboard', compact('list_kursus', 'pesanan'));
+        } elseif ($pesanan && $pesanan->status == 0) {
+            // Jika status pesanan adalah 0, tampilkan data lainnya
+            $data_lain = "Data lain yang ingin ditampilkan jika status pesanan adalah 0";
+            return view('peserta.dashboard', compact('data_lain', 'pesanan'));
+        } else {
+            // Handle jika pesanan tidak ditemukan
+            // Misalnya, tampilkan pesan kesalahan atau lakukan tindakan lain
+        }
     }
 
     
