@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +41,14 @@ Route::middleware(['auth:user'])->group(function(){
     Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
     Route::get('/panel/laporan-dari-manager', [PanelController::class, 'laporan_manager']);
     
+    //category
+    Route::get('/panel/category/list-category', [CategoryController::class, 'list_category']);
+    Route::get('/panel/category/create-category', [CategoryController::class, 'create_category']);
+    Route::post('/panel/category/proses-create',[CategoryController::class, 'store_category']);
+    Route::get('/panel/category/edit-category/{id}',[CategoryController::class, 'edit_category']);
+    Route::delete('/panel/category/delete-category/{id}',[CategoryController::class, 'delete_category'])->name('category.delete');
+    Route::put('/panel/category/proses-edit/{id}', [CategoryController::class, 'proses_edit_category'])->name('category.prosesEdit');
+
     });
 
 
@@ -56,15 +66,24 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/dashboard',[AuthController::class, 'index']);
 
     // Pesanan
+    Route::get('/search', [AuthController::class, 'search']);
     Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
-    Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+    Route::get('/konfirmasi-checkout', [PesanController::class, 'checkout-konfirmasi']);
+
+    // Stripe
+    Route::post('/stripe', [StripeController::class, 'stripe'])->name('session');
+    Route::get('/success', [StripeController::class, 'success'])->name('success');
+    Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
+
+    // landing page
     
 });
 
-Route::get('/search', [AuthController::class, 'search']);
+Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+    
 
 
 
