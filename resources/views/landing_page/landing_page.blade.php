@@ -13,7 +13,6 @@
     @foreach ($list_kursus as $item)
     <li>Kursus: {{$item->nama_kursus}} 
     <a href="/detail-kursus/{{$item->id}}">detail</a>
-    <a href="#">masukan keranjang</a>
     </li>
 @endforeach
 

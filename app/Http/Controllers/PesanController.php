@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Kursus;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PesanController extends Controller
 {
@@ -21,7 +23,6 @@ class PesanController extends Controller
     {
         $kursus = Kursus::where('id', $id)->first();
         $tanggal = Carbon::now();
-
 
        // cek validasi
        $cek_pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
@@ -39,7 +40,7 @@ class PesanController extends Controller
 
         // simpan ke database pesanan detail
         $pesanan_baru = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
-
+         
         //cek pesanan detail
         $cek_pesanan_detail = PesananDetail::where('kursus_id', $kursus->id)->where('pesanan_id', $pesanan_baru->id)->first();
         if(empty($cek_pesanan_detail))
@@ -65,6 +66,21 @@ class PesanController extends Controller
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
         $pesanan->jumlah_harga = $pesanan->jumlah_harga+$kursus->harga_kursus*$request->jumlah_pesan;
         $pesanan->update();
+
+        // simpan ke table peserta
+        // $pesanan_id = 0;
+        // $status_cart = 1;
+        // $id_peserta = Auth::user()->id;
+        
+        // $data = [
+        //     'pesanan_id' => $pesanan_id,
+        //     'status_cart' => $status_cart,
+        // ];
+        
+        // // Lakukan update data berdasarkan id_peserta
+        // $update = DB::table('list_peserta')
+        //     ->where('id', $id_peserta)
+        //     ->update($data);
 
         return redirect('/');
     }

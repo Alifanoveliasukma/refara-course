@@ -38,8 +38,9 @@
             <a href="/dashboard">Halaman Peserta</a>
             <a href="#">Peserta bernama:  {{ Auth::guard('peserta')->user()->nama }}</a>
             <a href="/proses-logout-peserta">Logout</a>
+            @if(Auth::guard('peserta')->check() && Auth::guard('peserta')->user()->status_cart == '1')
             <?php
-                $pesanan_utama = App\Models\Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
+                $pesanan_utama = App\Models\Pesanan::where('id_peserta', Auth::guard('peserta')->user()->id)->where('status', 0)->first();
 
                 if ($pesanan_utama) {
                     $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
@@ -48,6 +49,7 @@
                     echo '<a href="/pesan/checkout"></a>';
                 }
                 ?>
+            @endif
         @endif
     </nav>
 
