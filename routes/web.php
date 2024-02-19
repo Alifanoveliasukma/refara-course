@@ -66,7 +66,6 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/dashboard',[AuthController::class, 'index']);
 
     // Pesanan
-    Route::get('/search', [AuthController::class, 'search']);
     Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
@@ -79,11 +78,11 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
 
     // landing page
-    
 });
 
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
-    
+Route::get('/search', [AuthController::class, 'search']);
+
 
 
 
