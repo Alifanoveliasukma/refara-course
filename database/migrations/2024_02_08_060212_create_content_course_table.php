@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('harga_kursus');
             $table->string('durasi_kursus')->default('');
             $table->string('level')->default('');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
