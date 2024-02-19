@@ -67,20 +67,20 @@ class PesanController extends Controller
         $pesanan->jumlah_harga = $pesanan->jumlah_harga+$kursus->harga_kursus*$request->jumlah_pesan;
         $pesanan->update();
 
-        // simpan ke table peserta
-        // $pesanan_id = 0;
-        // $status_cart = 1;
-        // $id_peserta = Auth::user()->id;
         
-        // $data = [
-        //     'pesanan_id' => $pesanan_id,
-        //     'status_cart' => $status_cart,
-        // ];
+        $pesanan_id = 0;
+        $status_cart = 1;
+        $id_peserta = Auth::user()->id;
         
-        // // Lakukan update data berdasarkan id_peserta
-        // $update = DB::table('list_peserta')
-        //     ->where('id', $id_peserta)
-        //     ->update($data);
+        $data = [
+            'pesanan_id' => $pesanan_id,
+            'status_cart' => $status_cart,
+        ];
+        
+        // Lakukan update data berdasarkan id_peserta
+        $update = DB::table('list_peserta')
+            ->where('id', $id_peserta)
+            ->update($data);
 
         return redirect('/');
     }

@@ -21,9 +21,9 @@ class AuthController extends Controller
 
     public function landing_page()
     {
-        $list_kursus = Kursus::all();
+        $kursus = Kursus::all();
         $list_category = Category::all();
-        return view('landing_page.landing_page', compact('list_kursus', 'list_category'));
+        return view('landing_page.landing_page', compact('kursus', 'list_category'));
     }
 
     public function search(Request $request)
@@ -103,6 +103,7 @@ class AuthController extends Controller
     public function index()
     {
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->first();
+        $list_peserta = Peserta::where('id', Auth::user()->id)->first();
 
         if ($pesanan && $pesanan->status == 1) {
             // Jika status pesanan adalah 1, tampilkan data yang diminta
