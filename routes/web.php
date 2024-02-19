@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
@@ -40,6 +41,14 @@ Route::middleware(['auth:user'])->group(function(){
     Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
     Route::get('/panel/laporan-dari-manager', [PanelController::class, 'laporan_manager']);
     
+    //category
+    Route::get('/panel/category/list-category', [CategoryController::class, 'list_category']);
+    Route::get('/panel/category/create-category', [CategoryController::class, 'create_category']);
+    Route::post('/panel/category/proses-create',[CategoryController::class, 'store_category']);
+    Route::get('/panel/category/edit-category/{id}',[CategoryController::class, 'edit_category']);
+    Route::delete('/panel/category/delete-category/{id}',[CategoryController::class, 'delete_category'])->name('category.delete');
+    Route::put('/panel/category/proses-edit/{id}', [CategoryController::class, 'proses_edit_category'])->name('category.prosesEdit');
+
     });
 
 

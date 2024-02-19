@@ -14,6 +14,14 @@ class Kursus extends Model
         'nama_kursus',
         'nama_pembuat',
         'deskripsi_kursus',
-        'harga_kursus'
+        'harga_kursus',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+
+    }
+
 }
