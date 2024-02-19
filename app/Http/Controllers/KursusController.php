@@ -11,8 +11,9 @@ class KursusController extends Controller
 {
     public function list_kursus()
     {
+        $list_category = Category::all();
         $list_kursus = Kursus::with('category')->latest()->paginate(10);;
-        return view('kursus.index', compact('list_kursus'));
+        return view('kursus.index', compact('list_kursus','list_category'));
         
     }
     public function create_kursus()

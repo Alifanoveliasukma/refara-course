@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Kursus;
 use App\Models\Payment;
 use App\Models\Pesanan;
@@ -21,7 +22,8 @@ class AuthController extends Controller
     public function landing_page()
     {
         $list_kursus = Kursus::all();
-        return view('landing_page.landing_page', compact('list_kursus'));
+        $list_category = Category::all();
+        return view('landing_page.landing_page', compact('list_kursus', 'list_category'));
     }
 
     public function search(Request $request)
@@ -142,8 +144,9 @@ class AuthController extends Controller
 
     public function panel_dashboard()
     {
+        $list_category = Category::all();
         $list_kursus = Kursus::all();
-        return view('kursus.index', compact('list_kursus'));
+        return view('kursus.index', compact('list_category'));
     }
 
     

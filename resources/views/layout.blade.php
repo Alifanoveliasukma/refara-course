@@ -59,6 +59,7 @@
     <nav class="navbar">
         <a href="/panel/kursus/list-kursus">Home</a>
         <a href="/panel/kursus/create-kursus">Create Kursus</a>
+        <a href="/panel/category/create-category">Create Kategori</a>
         <a href="#">Halaman Owner</a>
         <a href="/proses-logout-panel">Logout</a>
         <a href="/panel/laporan-dari-manager">Laporan dari Manager</a>
