@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('no_telp');
             $table->string('email');
+            $table->string('pesanan_id')->default(0);
             $table->string('password');
+            $table->string('status_cart')->default(0);
             $table->timestamps();
         });
     }

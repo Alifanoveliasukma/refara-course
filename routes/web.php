@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,10 +61,18 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
-    Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+    Route::get('/konfirmasi-checkout', [PesanController::class, 'checkout-konfirmasi']);
+
+    // Stripe
+    Route::post('/stripe', [StripeController::class, 'stripe'])->name('session');
+    Route::get('/success', [StripeController::class, 'success'])->name('success');
+    Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
+
+    // landing page
     
 });
-
+Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+    
 
 
 
