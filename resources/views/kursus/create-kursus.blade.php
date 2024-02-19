@@ -29,6 +29,14 @@
         <textarea id="deskripsi_kursus" name="deskripsi_kursus" required></textarea>
     </div>
     <div>
+        <label for="nama_kursus">Level Kursus:</label>
+        <input type="text" id="level" name="level" required>
+    </div>
+    <div>
+        <label for="durasi_kursus">Durasi Kursus:</label>
+        <input type="text" id="durasi_kursus" name="durasi_kursus" required>
+    </div>
+    <div>
         <label for="harga_kursus">Harga Kursus:</label>
         <input type="number" id="harga_kursus" name="harga_kursus" required>
     </div>

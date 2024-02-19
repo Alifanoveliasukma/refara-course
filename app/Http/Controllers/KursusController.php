@@ -29,6 +29,8 @@ class KursusController extends Controller
                 'nama_kursus' => ['required', 'string', 'max:255'],
                 'nama_pembuat' => ['required', 'string', 'max:255'],
                 'deskripsi_kursus' => ['required', 'string'],
+                'durasi_kursus' => ['nullable', 'string', 'max:255' ],
+                'level' => ['required', 'string'],
                 'harga_kursus' => ['required', 'integer', 'min:0'],
                 'category_id' => 'required|exists:App\Models\Category,id',
             ]);
@@ -38,6 +40,8 @@ class KursusController extends Controller
                 'nama_kursus' => $request->nama_kursus,
                 'nama_pembuat' => $request->nama_pembuat,
                 'deskripsi_kursus' => $request->deskripsi_kursus,
+                'durasi_kursus' => $request->durasi_kursus,
+                'level' => $request->level,
                 'harga_kursus' => $request->harga_kursus,
                 'category_id' => $request->category_id,
             ]);
