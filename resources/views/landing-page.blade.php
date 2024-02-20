@@ -30,6 +30,7 @@
     
     <nav class="navbar">
         @if (Auth::guard('peserta')->guest())
+            <a href="/">Refara</a>
             <a href="{{ route('login') }}">Login Peserta</a>
             <a href="/register">Register</a>
             <a href="/landing-page">Halaman Landing Page</a>

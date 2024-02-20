@@ -68,7 +68,6 @@ class PesanController extends Controller
         $pesanan->update();
 
         
-        $pesanan_id = 0;
         $status_cart = 1;
         $id_peserta = Auth::user()->id;
         
