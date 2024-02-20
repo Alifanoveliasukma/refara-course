@@ -82,6 +82,7 @@ Route::middleware(['auth:peserta'])->group(function(){
 
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 Route::get('/search', [AuthController::class, 'search']);
+Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);
 
 
 

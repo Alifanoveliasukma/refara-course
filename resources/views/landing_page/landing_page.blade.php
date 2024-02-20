@@ -21,6 +21,13 @@
     <a href="/detail-kursus/{{$item->id}}">detail</a>
     </li>
     @endforeach
+<br>
+    @foreach($list_category as $cate)
+    <li>
+        fetching : <a href="/category/{{$cate->nama_category}}">{{$cate->nama_category}}</a>
+    </li>
+
+    @endforeach
 
 @endsection
 
