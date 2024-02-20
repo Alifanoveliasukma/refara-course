@@ -21,14 +21,15 @@ class AuthController extends Controller
 
     public function landing_page()
     {
-        $list_kursus = Kursus::all();
+        $kursus = Kursus::all();
         $list_category = Category::all();
-        return view('landing_page.landing_page', compact('list_kursus', 'list_category'));
+        return view('landing_page.landing_page', compact('kursus', 'list_category'));
     }
 
     public function search(Request $request)
     {
     // menangkap data search
+    $list_category = Category::all();
     $list_kursus = Kursus::all();
     $search = $request->search;
     
@@ -38,8 +39,21 @@ class AuthController extends Controller
     ->paginate();
     
         // mengirim data pegawai ke view landing_page
-    return view('landing_page.landing_page', compact('kursus','list_kursus'));
+    return view('landing_page.landing_page', compact('kursus','list_kursus','list_category'));
     
+    }
+
+    public function fetching_kategori($nama_category)
+    {
+        if(Category::where('nama_category', $nama_category)->exists())
+        {
+            $category = Category::where('nama_category', $nama_category)->first();
+            $kursus = Kursus::where('category_id',$category->id)->where('status', '0')->get();
+            return view('category.kursus', compact('category', 'kursus'));
+        }
+        else{
+           return redirect('/')->with('status', "kategori belum ada"); 
+        }
     }
 
     public function registrasi()
@@ -103,6 +117,7 @@ class AuthController extends Controller
     public function index()
     {
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->first();
+        $list_peserta = Peserta::where('id', Auth::user()->id)->first();
 
         if ($pesanan && $pesanan->status == 1) {
             // Jika status pesanan adalah 1, tampilkan data yang diminta

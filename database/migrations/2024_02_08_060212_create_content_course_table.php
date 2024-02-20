@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kursus');
             $table->string('nama_pembuat');
+            $table->string('status')->default(0);
             $table->string('category_id')->constrained();;
             $table->text('deskripsi_kursus');
             $table->integer('harga_kursus');

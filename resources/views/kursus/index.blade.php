@@ -9,7 +9,7 @@
     @endif
     <ul class="list-kursus">
         @foreach ($list_kursus as $item)
-            <li>Kursus: {{$item->nama_kursus}} 
+            <li>Kursus: {{$item->nama_kursus}} kategori {{$item->category->nama_category}}
             <a href="/panel/kursus/edit-kursus/{{$item->id}}">edit</a>
             <form action="{{ route('kursus.delete', $item->id) }}" method="post" class="d-inline">
                 @csrf
