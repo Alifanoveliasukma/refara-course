@@ -14,6 +14,10 @@ class Peserta extends Authenticatable
 
     protected $table = 'list_peserta';
    
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class, 'id_peserta');
+    }
     protected $fillable = [
         'nama',
         'email',

@@ -10,6 +10,10 @@ class Pesanan extends Model
     use HasFactory;
 
     protected $table = 'pesanan';
+    public function peserta()
+    {
+        return $this->belongsTo(Peserta::class, 'id_peserta');
+    }
 
     protected $fillable = [
         'id_peserta',

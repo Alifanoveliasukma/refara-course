@@ -37,7 +37,7 @@
             <a href="/landing-page">Halaman Landing Page</a>
         @else
             <a href="/">Refara</a>
-            <a href="#">Halaman Peserta</a>
+            <a href="/dashboard">Halaman Peserta</a>
             <a href="#">Peserta bernama:  {{ Auth::guard('peserta')->user()->nama }}</a>
             <a href="/proses-logout-peserta">Logout</a>
             <?php
