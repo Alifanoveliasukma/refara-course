@@ -70,11 +70,9 @@ class PesanController extends Controller
         
         $pesanan_id = 0;
         $status_cart = 1;
-        $pesanan_id = 1;
         $id_peserta = Auth::user()->id;
         
         $data = [
-            'pesanan_id' => $pesanan_id,
             'status_cart' => $status_cart,
         ];
         

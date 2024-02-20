@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Pesanan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StripeController extends Controller
 {
@@ -15,6 +16,19 @@ class StripeController extends Controller
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
         $pesanan->status = 1;
         $pesanan->update();
+
+        $status_cart = 1;
+        $pesanan_id = 1;
+        $id_peserta = Auth::user()->id;
+        
+        $data = [
+            'pesanan_id' => $pesanan_id,
+        ];
+        
+        // Lakukan update data berdasarkan id_peserta
+        $update = DB::table('list_peserta')
+            ->where('id', $id_peserta)
+            ->update($data);
 
         // simpan pada table payment
         $stripe = new \Stripe\StripeClient(config('stripe.stripe_sk'));
