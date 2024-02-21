@@ -72,6 +72,9 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
     Route::get('/konfirmasi-checkout', [PesanController::class, 'checkout-konfirmasi']);
 
+    // kursus yang dibeli
+    Route::get('/dashboard/kursus/{id}', [PesanController::class, 'belajar_kursus']);
+
     // Stripe
     Route::post('/stripe', [StripeController::class, 'stripe'])->name('session');
     Route::get('/success', [StripeController::class, 'success'])->name('success');

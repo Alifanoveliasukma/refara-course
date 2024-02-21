@@ -24,7 +24,7 @@
                 @csrf 
                 <input type="hidden" name="jumlah_pesan" class="form-control" required="" value="1">
                 @if($data == 'true')
-                    <a href="/#">Lanjut belajar</a>
+                     <a href="/dashboard/kursus/{{$kursus->id}}">Lanjut belajar</a>
                 @elseif($data == 'false')
                 <button type="submit">Masukan keranjang</button>
                 @endif

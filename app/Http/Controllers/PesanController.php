@@ -18,7 +18,6 @@ class PesanController extends Controller
     {
         
         $peserta_id = Auth::user()->id;
-
         $kursus_data = Data::where('kursus_id', $peserta_id)->first();
         $kursus = Kursus::where('id', $id)->first();
 
@@ -35,6 +34,11 @@ class PesanController extends Controller
                 dd($data);
         }
         return view('kursus.detail', compact('kursus'));
+    }
+
+    public function belajar_kursus($id)
+    {
+        return view('peserta.belajar');
     }
 
     public function pesan(Request $request, $id)
