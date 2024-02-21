@@ -15,11 +15,11 @@ class Kursus extends Model
     protected $fillable = [
         'nama_kursus',
         'nama_pembuat',
-        'deskripsi_kursus',
+        'deskripsi_kursus', 
         'harga_kursus',
         'category_id',
         'image',
-    ];
+    ]; 
 
     public function category()
     {
