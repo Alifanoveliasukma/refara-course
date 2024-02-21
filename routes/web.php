@@ -66,12 +66,14 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/dashboard',[AuthController::class, 'index']);
 
     // Pesanan
-    Route::get('/search', [AuthController::class, 'search']);
     Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
     Route::get('/konfirmasi-checkout', [PesanController::class, 'checkout-konfirmasi']);
+
+    // kursus yang dibeli
+    Route::get('/dashboard/kursus/{id}', [PesanController::class, 'belajar_kursus']);
 
     // Stripe
     Route::post('/stripe', [StripeController::class, 'stripe'])->name('session');
@@ -79,11 +81,12 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
 
     // landing page
-    
 });
 
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
-    
+Route::get('/search', [AuthController::class, 'search']);
+Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);
+
 
 
 

@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('category_id')->constrained();;
             $table->text('deskripsi_kursus');
             $table->integer('harga_kursus');
+            $table->string('durasi_kursus')->default('');
+            $table->string('level')->default('');
+            $table->string('status')->default('0');
+            $table->softDeletes();
             $table->string('durasi_kursus')->nullable();
             $table->string('level')->nullable();
             $table->string('image')->nullable();

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
 {
@@ -29,6 +30,7 @@ class AuthController extends Controller
     public function search(Request $request)
     {
     // menangkap data search
+    $list_category = Category::all();
     $list_kursus = Kursus::all();
     $search = $request->search;
     
@@ -38,8 +40,21 @@ class AuthController extends Controller
     ->paginate();
     
         // mengirim data pegawai ke view landing_page
-    return view('landing_page.landing_page', compact('kursus','list_kursus'));
+    return view('landing_page.landing_page', compact('kursus','list_kursus','list_category'));
     
+    }
+
+    public function fetching_kursus($nama_category)
+    {
+        if(Category::where('nama_category', $nama_category)->exists())
+        {
+            $kategori = Category::where('nama_category', $nama_category)->first();
+            $kursus = Kursus::where('category_id', $kategori->id)->where('status',0)->get();
+            return view('kursus.display', compact('kursus', 'kategori'));
+        } else {
+            return redirect('/')->with('status', 'Kategori tidak ada');
+        }
+        
     }
 
     public function registrasi()
@@ -102,21 +117,19 @@ class AuthController extends Controller
 
     public function index()
     {
-        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->first();
+        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 1)->get();
         $list_peserta = Peserta::where('id', Auth::user()->id)->first();
-
-        if ($pesanan && $pesanan->status == 1) {
-            // Jika status pesanan adalah 1, tampilkan data yang diminta
-            $list_kursus = PesananDetail::where('pesanan_id', $pesanan->id)->get();
-            return view('peserta.dashboard', compact('list_kursus', 'pesanan'));
-        } elseif ($pesanan && $pesanan->status == 0) {
-            // Jika status pesanan adalah 0, tampilkan data lainnya
-            $data_lain = "Data lain yang ingin ditampilkan jika status pesanan adalah 0";
-            return view('peserta.dashboard', compact('data_lain', 'pesanan'));
+        
+        if ($pesanan->isNotEmpty()) {
+            // Jika ada pesanan yang terkait dengan pengguna saat ini
+            $pesanan_peserta = PesananDetail::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
+            return view('peserta.dashboard', compact('pesanan_peserta', 'pesanan'));
         } else {
-            // Handle jika pesanan tidak ditemukan
-            // Misalnya, tampilkan pesan kesalahan atau lakukan tindakan lain
+            // Jika tidak ada pesanan yang terkait dengan pengguna saat ini
+            $data_lain = "Data lain yang ingin ditampilkan jika tidak ada pesanan terkait";
+            return view('peserta.dashboard', compact('data_lain'));
         }
+        
     }
 
     
@@ -147,7 +160,7 @@ class AuthController extends Controller
     {
         $list_category = Category::all();
         $list_kursus = Kursus::all();
-        return view('kursus.index', compact('list_category'));
+        return view('kursus.index', compact('list_category','list_kursus'));
     }
 
     

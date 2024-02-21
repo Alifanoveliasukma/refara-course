@@ -6,21 +6,20 @@
     </div>
     @endif
 
-    @if ($pesanan && $pesanan->status == 1)
-
-    <h2>Kursus yang telah kamu</h2>
-    @foreach($list_kursus as $a)
-        <li>
-            {{$a->kursus->nama_kursus}}
-        </li>
-    @endforeach
-    @elseif ($pesanan && $pesanan->status == 0)
-        <div class="alert alert-info">
-            belum ada kursus yang di beli
-        </div>
+    @if(Auth::guard('peserta')->user()->status_cart == '1')
+        @if(Auth::guard('peserta')->user()->pesanan_id == 1)
+            <h2>Kursus yang telah kamu beli</h2>
+            @foreach($pesanan_peserta as $a)
+                <li>
+                    {{$a->kursus->nama_kursus}}
+                </li>
+            @endforeach
+        @else
+            <p>Anda belum memesan kursus - kondisi sudah tambah cart</p>
+        @endif
     @else
-        <h2>Tidak ada pesanan yang ditemukan</h2>
+        <p>Anda belum memesan kursus - kondisi belum tambah cart</p>
     @endif
+  
 
 @endsection
-

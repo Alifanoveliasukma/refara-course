@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
 use App\Models\Kursus;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
@@ -13,10 +14,31 @@ use Illuminate\Support\Facades\DB;
 
 class PesanController extends Controller
 {
-    public function detail_kursus($id)
+    public function detail_kursus(Request $request, $id)
     {
+        
+        $peserta_id = Auth::user()->id;
+        $kursus_data = Data::where('kursus_id', $peserta_id)->first();
         $kursus = Kursus::where('id', $id)->first();
+
+        if ($kursus_data && $kursus) {
+            if ($kursus_data->kursus_id == $kursus->id) {
+                $data = "true";
+                return view('kursus.detail', compact('data', 'kursus'));
+            } else {
+                $data = "false";
+                return view('kursus.detail', compact('data', 'kursus'));
+            }
+        } else {
+            $data = "tidak ditemukan";
+                dd($data);
+        }
         return view('kursus.detail', compact('kursus'));
+    }
+
+    public function belajar_kursus($id)
+    {
+        return view('peserta.belajar');
     }
 
     public function pesan(Request $request, $id)
@@ -68,12 +90,10 @@ class PesanController extends Controller
         $pesanan->update();
 
         
-        $pesanan_id = 0;
         $status_cart = 1;
         $id_peserta = Auth::user()->id;
         
         $data = [
-            'pesanan_id' => $pesanan_id,
             'status_cart' => $status_cart,
         ];
         

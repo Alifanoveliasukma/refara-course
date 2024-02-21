@@ -32,12 +32,13 @@
     @if(auth()->guard('peserta')->check())
     <nav class="navbar">
         @if (Auth::guard('peserta')->guest())
+            <a href="/">Refara</a>
             <a href="{{ route('login') }}">Login Peserta</a>
             <a href="/register">Register</a>
             <a href="/landing-page">Halaman Landing Page</a>
         @else
             <a href="/">Refara</a>
-            <a href="#">Halaman Peserta</a>
+            <a href="/dashboard">Halaman Peserta</a>
             <a href="#">Peserta bernama:  {{ Auth::guard('peserta')->user()->nama }}</a>
             <a href="/proses-logout-peserta">Logout</a>
             <?php
