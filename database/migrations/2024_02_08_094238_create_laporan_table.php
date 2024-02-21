@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_kursus')->nullable();;
-            $table->unsignedBigInteger('id_peserta')->nullable();;
+            $table->unsignedBigInteger('id_kursus')->nullable();
+            $table->unsignedBigInteger('id_peserta')->nullable();
             $table->timestamps();
 
             $table->foreign('id_kursus')->references('id')->on('content_course');

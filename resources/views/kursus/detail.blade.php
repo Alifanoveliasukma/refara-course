@@ -23,7 +23,12 @@
             <form action="/pesan/{{$kursus->id}}" method="post">
                 @csrf 
                 <input type="hidden" name="jumlah_pesan" class="form-control" required="" value="1">
-                <button type="submit" >Masukkan keranjang</button>
+                @if($data == 'true')
+                     <a href="/dashboard/kursus/{{$kursus->id}}">Lanjut belajar</a>
+                @elseif($data == 'false')
+                <button type="submit">Masukan keranjang</button>
+                @endif
+
             </form>
         </td>
 </table>
