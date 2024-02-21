@@ -21,28 +21,45 @@ class PesanController extends Controller
         $kursus_data = Data::where('kursus_id', $peserta_id)->first();
         $kursus = Kursus::where('id', $id)->first();
 
-        if ($kursus_data && $kursus) {
-            if ($kursus_data->kursus_id == $kursus->id) {
-                $data = "true";
-                return view('kursus.detail', compact('data', 'kursus'));
-            } else {
-                $data = "false";
-                return view('kursus.detail', compact('data', 'kursus'));
-            }
+        $user_id = Auth::id();
+        $list_peserta = Peserta::where('id', $user_id)->first();
+        $pesanan_id = $list_peserta->pesanan_id;
+        $status_cart = $list_peserta->status_cart;
+        if ($status_cart == 0) {
+            $data = "false";
+            return view('kursus.detail', compact('kursus', 'data'));
         } else {
-            $data = "tidak ditemukan";
-                dd($data);
+            
+            if($pesanan_id == 0){
+                $data = "false";
+                return view('kursus.detail', compact('kursus', 'data'));
+            } else {
+                if ($kursus_data && $kursus) {
+                    if ($kursus_data->kursus_id == $kursus->id) {
+                        $data = "true";
+                        return view('kursus.detail', compact('data', 'kursus'));
+                    } else {
+                        $data = "false";
+                        return view('kursus.detail', compact('data', 'kursus'));
+                    }
+                } else {
+                    $data = "tidak ditemukan";
+                        dd($data);
+                }
+            }
         }
         return view('kursus.detail', compact('kursus'));
     }
-
     public function belajar_kursus($id)
     {
-        return view('peserta.belajar');
+        $peserta_id = Auth::user()->id;
+        $content = Data::where('kursus_id', $peserta_id)->first();
+        return view('peserta.belajar', compact('content'));
     }
 
     public function pesan(Request $request, $id)
     {
+
         $kursus = Kursus::where('id', $id)->first();
         $tanggal = Carbon::now();
 
@@ -96,6 +113,15 @@ class PesanController extends Controller
         $data = [
             'status_cart' => $status_cart,
         ];
+
+        $pesanan_detail = PesananDetail::where('id', Auth::user()->id)->first();
+        // simpan ke database data lengkap
+        $data_lengkap = new Data;
+        $data_lengkap->peserta_id = Auth::user()->id;
+        $data_lengkap->kursus_id = $kursus->id;
+        $data_lengkap->pesanan_id = $pesanan_baru->id;
+        $data_lengkap->pesanan_detail_id = $pesanan_detail->id;
+        $data_lengkap->save();
         
         // Lakukan update data berdasarkan id_peserta
         $update = DB::table('list_peserta')
