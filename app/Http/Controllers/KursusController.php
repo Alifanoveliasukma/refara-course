@@ -24,17 +24,21 @@ class KursusController extends Controller
 
     public function store_kursus(Request $request)
         {
-            // Validasi input
+                // Validasi input
             $request->validate([
                 'nama_kursus' => ['required', 'string', 'max:255'],
                 'nama_pembuat' => ['required', 'string', 'max:255'],
                 'deskripsi_kursus' => ['required', 'string'],
-                'durasi_kursus' => ['nullable', 'string', 'max:255' ],
+                'durasi_kursus' => ['nullable', 'string', 'max:255'],
                 'level' => ['required', 'string'],
                 'harga_kursus' => ['required', 'integer', 'min:0'],
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category_id' => 'required|exists:App\Models\Category,id',
             ]);
-    
+
+            // Simpan gambar
+            $imagePath = $request->file('image')->store('image-course');
+
             // Simpan data kursus ke database
             $kursus = Kursus::create([
                 'nama_kursus' => $request->nama_kursus,
@@ -43,8 +47,9 @@ class KursusController extends Controller
                 'durasi_kursus' => $request->durasi_kursus,
                 'level' => $request->level,
                 'harga_kursus' => $request->harga_kursus,
+                'image' => $imagePath,
                 'category_id' => $request->category_id,
-            ]);
+             ]);
     
             // Redirect ke halaman yang sesuai
             return redirect('/panel/kursus/list-kursus')->with('success', 'Kursus Telah Berhasil!');

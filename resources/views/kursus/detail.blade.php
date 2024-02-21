@@ -2,6 +2,10 @@
 @section('content')
 <table>
     <tr>
+        <td>Gambar Kursu:</td>
+        <td><img src="{{ asset('storage/' .$kursus->image ) }}" alt="Gambar Kursus" style="max-height: 200px; max-width: 200px"></td>
+    </tr>
+    <tr>
         <td><label for="nama_kursus">Nama Kursus:</label></td>
         <td><input type="text" id="nama_kursus" name="nama_kursus" required value="{{ $kursus->nama_kursus }}"></td>
     </tr>
@@ -17,15 +21,16 @@
         <td><label for="harga_kursus">Harga Kursus:</label></td>
         <td><input type="number" id="harga_kursus" name="harga_kursus" required value="{{ $kursus->harga_kursus }}"></td>
     </tr>
+    <tr>
         <td>Jumlah pesan</td>
         <td>:</td>
         <td>
             <form action="/pesan/{{$kursus->id}}" method="post">
                 @csrf 
                 <input type="hidden" name="jumlah_pesan" class="form-control" required="" value="1">
-                <button type="submit" >Masukkan keranjang</button>
+                <button type="submit">Masukkan keranjang</button>
             </form>
         </td>
+    </tr>
 </table>
-
 @endsection

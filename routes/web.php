@@ -35,7 +35,7 @@ Route::middleware(['auth:user'])->group(function(){
 
     Route::get('/panel/kursus/list-kursus',[KursusController::class, 'list_kursus']);
     Route::get('/panel/kursus/create-kursus',[KursusController::class, 'create_kursus']);
-    Route::post('/panel/kursus/proses-create',[KursusController::class, 'store_kursus']);
+    Route::post('/panel/kursus/proses-create',[KursusController::class, 'store_kursus'])->name('store.kursus');
     Route::get('/panel/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);
     Route::delete('/panel/kursus/delete-kursus/{id}',[KursusController::class, 'delete_kursus'])->name('kursus.delete');
     Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');

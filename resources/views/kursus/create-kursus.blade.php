@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<form action="/panel/kursus/proses-create" method="POST">
+<form action="/panel/kursus/proses-create" method="POST" enctype="multipart/form-data" >
     @csrf
     <div>
         <label for="nama_kursus">Nama Kursus:</label>
@@ -40,6 +40,10 @@
         <label for="harga_kursus">Harga Kursus:</label>
         <input type="number" id="harga_kursus" name="harga_kursus" required>
     </div>
+    <div class="form-group">
+        <b>File Gambar</b><br/>
+        <input type="file" id="image"name="image">
+        </div>
     <div>
         <button type="submit">Tambah Kursus</button>
     </div>

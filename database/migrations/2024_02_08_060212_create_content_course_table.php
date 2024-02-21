@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('harga_kursus');
             $table->string('durasi_kursus')->nullable();
             $table->string('level')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

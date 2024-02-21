@@ -15,7 +15,8 @@ class Kursus extends Model
         'nama_pembuat',
         'deskripsi_kursus',
         'harga_kursus',
-        'category_id'
+        'category_id',
+        'image',
     ];
 
     public function category()
