@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Pesanan;
@@ -10,14 +11,42 @@ use Illuminate\Support\Facades\DB;
 
 class StripeController extends Controller
 {
+    public function cek(Request $request)
+    {
+        $peserta_id = Auth::user()->id;
+        // dd($peserta_id);
+        $pesanan_id = Pesanan::where('id_peserta', $peserta_id)->first();
+        //  dd($pesanan_id->id);
+        $pesanan_kursus = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 1)->first();
+        // dd($pesanan_kursus->kursus_id);
+        $data_lengkap = new Data;
+        $data_lengkap->peserta_id = Auth::user()->id;
+        $data_lengkap->kursus_id = $pesanan_kursus->kursus_id;
+        $data_lengkap->pesanan_id = $pesanan_id->id;
+        $data_lengkap->save();
+    }
     public function stripe(Request $request)
     {
+        $peserta_id = Auth::user()->id;
+        // dd($peserta_id);
+        $pesanan_id_data = Pesanan::where('id_peserta', $peserta_id)->where('status',0)->first();
+        //  dd($pesanan_id_data->kursus_id);
+        
+        // dd($pesanan_kursus->kursus_id);
         // simpan pada table pesanan
+        $pesanan_id = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
+        // dd($pesanan_id->id);
+        $data_lengkap = new Data;
+        $data_lengkap->peserta_id = Auth::user()->id;
+        $data_lengkap->kursus_id = $pesanan_id_data->kursus_id;
+        $data_lengkap->pesanan_id = $pesanan_id->id;
+        $data_lengkap->save();
+
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
         $pesanan->status = 1;
         $pesanan->update();
 
-        $status_cart = 1;
+        // $status_cart = 1;
         $pesanan_id = 1;
         $id_peserta = Auth::user()->id;
         
@@ -58,6 +87,9 @@ class StripeController extends Controller
         } else{
             return redirect()->route('cancel');
         }
+
+        
+        
     }
 
     public function success(Request $request)

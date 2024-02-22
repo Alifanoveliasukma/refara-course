@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('pesanan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_peserta')->nullable();
+            $table->unsignedBigInteger('kursus_id')->nullable();
             $table->string('status');
             $table->date('tanggal');
             $table->integer('jumlah_harga');
             $table->timestamps();
 
             $table->foreign('id_peserta')->references('id')->on('list_peserta');
+            $table->foreign('kursus_id')->references('id')->on('content_course');
         });
     }
 

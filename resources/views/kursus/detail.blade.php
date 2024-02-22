@@ -25,8 +25,14 @@
                 <input type="hidden" name="jumlah_pesan" class="form-control" required="" value="1">
                 @if($data == 'true')
                      <a href="/dashboard/kursus/{{$kursus->id}}">Lanjut belajar</a>
-                @elseif($data == 'false')
-                <button type="submit">Masukan keranjang</button>
+                @elseif($data == 'false_1_belum keranjang')
+                <button type="submit">Masukan keranjang - false_1</button>
+                @elseif($data == 'false_2')
+                <button type="submit">Masukan keranjang - false_2</button>
+                @elseif($data == 'false_sudah_keranjang')
+                <label>sudah masuk keranjang</label>
+                @elseif($data == 'notfound')
+                <button type="submit">Masukan keranjang - notfound</button>
                 @endif
 
             </form>
