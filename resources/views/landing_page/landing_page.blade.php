@@ -29,8 +29,15 @@
 
     @endforeach
 
-
     <h1>Contact Us</h1>
+    @php 
+    $messagewarning = Session::get('success');
+    @endphp
+    @if (Session::get('success'))
+    <div class=" alert alert-danger">
+       {{ $messagewarning }}
+    </div>
+    @endif
     <form action="/contact" method="post">
         @csrf
         <label for="nama">Name:</label><br>

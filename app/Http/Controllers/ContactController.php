@@ -25,8 +25,7 @@ class ContactController extends Controller
             'email' => $request->email,
             'message' =>$request->message,
         ]);
-        dd($contact);
 
-        return redirect()->back()->with('success', 'Pesan berhasil dikirim!');
+        return redirect()->back()->with('success', 'Pesan berhasil dikirim!, kami akan membalas balasan di email kamu ya!');
     } 
 }
