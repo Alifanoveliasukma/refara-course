@@ -29,5 +29,19 @@
 
     @endforeach
 
+
+    <h1>Contact Us</h1>
+    <form action="{{ route('contact') }}" method="post">
+        @csrf
+        <label for="nama">Name:</label><br>
+        <input type="text" id="nama" name="nama"><br>
+        <label for="no_telepon">No Telepon:</label><br>
+        <input type="text" id="no_telepon" name="no_teleon"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
 @endsection
 

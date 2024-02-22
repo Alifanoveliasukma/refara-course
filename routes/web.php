@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
@@ -86,7 +87,7 @@ Route::middleware(['auth:peserta'])->group(function(){
 Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 Route::get('/search', [AuthController::class, 'search']);
 Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);
-
+Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
 
 
