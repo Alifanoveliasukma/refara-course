@@ -17,7 +17,7 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
             'message' => 'required|string',
         ]);
-
+// dd($request);
         // Simpan pesan ke database
         $contact = Contact::create([
             'nama' => $request->nama,
@@ -25,6 +25,7 @@ class ContactController extends Controller
             'email' => $request->email,
             'message' =>$request->message,
         ]);
+        dd($contact);
 
         return redirect()->back()->with('success', 'Pesan berhasil dikirim!');
     } 

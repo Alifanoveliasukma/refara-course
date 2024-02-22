@@ -31,12 +31,12 @@
 
 
     <h1>Contact Us</h1>
-    <form action="{{ route('contact') }}" method="post">
+    <form action="/contact" method="post">
         @csrf
         <label for="nama">Name:</label><br>
         <input type="text" id="nama" name="nama"><br>
         <label for="no_telepon">No Telepon:</label><br>
-        <input type="text" id="no_telepon" name="no_teleon"><br>
+        <input type="text" id="no_telepon" name="no_telepon"><br>
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email"><br>
         <label for="message">Message:</label><br>
