@@ -22,6 +22,14 @@ class PesanController extends Controller
     // Mengambil kursus yang diklik oleh pengguna
     $kursus = Kursus::where('id', $id)->first();
 
+    $pesananExists = Pesanan::where('kursus_id', $kursus)->exists();
+    // dd($pesananExists == False);
+    
+    // dd($kursus);
+    // $pesananExists = Pesanan::whereHas('detail_pesanan', function ($query) use ($kursus) {
+    //     $query->where('kursus_id', $kursus);
+    // })->exists();
+    // dd($pesananExists);
     // Memeriksa apakah kursus_id yang diklik oleh peserta yang sedang login ada di dalam Data
     $isPurchased = Data::where('peserta_id', $peserta_id)
         ->where('kursus_id', $kursus->id)
@@ -56,22 +64,30 @@ class PesanController extends Controller
                 
         } else {
             if($pesanan_id == 0){
-                // dd('status cartnya 1 tapi pesanan_idnya 0');
+                dd('status cartnya 1 tapi pesanan_idnya 0');
                 $data = "false_sudah_keranjang";
                 return view('kursus.detail', compact('kursus', 'data'));
             } else {
                 if ($isPurchased) {
                         $data = "true";
-                        return view('kursus.detail', compact('data', 'kursus'));
                         // dd('Kursus ini telah dibeli oleh peserta yang sedang login.');
+                        return view('kursus.detail', compact('data', 'kursus'));
+                        
                 } else {
-                    if ($pesanan->status == 0){
-                        $data = "false_sudah_keranjang";
+                    if($pesananExists == False){
+                        $data = "false_3";
+                        // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
                         return view('kursus.detail', compact('data', 'kursus'));
                     }
-                        $data = "false_2";
+                    if ($pesanan->status == 0){
+                        // dd('false_sudah keranjang');
+                        $data = "false_sudah_keranjang";
                         return view('kursus.detail', compact('data', 'kursus'));
+                    } 
+                        $data = "false_2";
                         // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
+                        return view('kursus.detail', compact('data', 'kursus'));
+                        
                 }
                     $data = "notfound";
                     return view('kursus.detail', compact('kursus', 'data'));
