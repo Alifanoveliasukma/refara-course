@@ -123,6 +123,7 @@ class AuthController extends Controller
         if ($pesanan->isNotEmpty()) {
             // Jika ada pesanan yang terkait dengan pengguna saat ini
             $pesanan_peserta = PesananDetail::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
+            // dd($pesanan_peserta);
             return view('peserta.dashboard', compact('pesanan_peserta', 'pesanan'));
         } else {
             // Jika tidak ada pesanan yang terkait dengan pengguna saat ini

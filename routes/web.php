@@ -79,7 +79,8 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::post('/stripe', [StripeController::class, 'stripe'])->name('session');
     Route::get('/success', [StripeController::class, 'success'])->name('success');
     Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
-
+    
+    Route::get('/cek', [StripeController::class, 'cek']);
     // landing page
 });
 

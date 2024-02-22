@@ -7,7 +7,6 @@
         <tr>
             <th>no</th>
             <th>Nama kursus</th>
-            <th>jumlah</th>
             <th>harga</th>
             <th>Total harga</th>
         </tr>
@@ -18,7 +17,6 @@
         <tr>
             <td>{{$no++}}</td>
             <td>{{ $item->kursus->nama_kursus}}</td>
-            <td>{{ $item->jumlah}} kursus</td>
             <td align="left">Rp . {{ number_format($item->kursus->harga_kursus) }}</td>
             <td align="left">Rp . {{ number_format($item->jumlah_harga) }}</td>
             <td>

@@ -16,10 +16,12 @@ class Pesanan extends Model
     }
 
     protected $fillable = [
+        'id',
         'id_peserta',
         'status',
         'tanggal',
-        'jumlah_harga'
+        'jumlah_harga',
+        'kursus_id',
     ];
 
 }
