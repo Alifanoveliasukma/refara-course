@@ -36,6 +36,12 @@
                 <button type="submit">Masukan keranjang - false_2</button>
                 @elseif($data == 'false_3')
                 <button type="submit">Masukan keranjang - false_3 - tidak ada di pesanan</button>
+                @elseif($data == 'false_4')
+                <button type="submit">Masukan keranjang - false_4 - tidak ada di pesanan tetapi status cartnya 1</button>
+                @elseif($data == 'false_5')
+                <button type="submit">Masukan keranjang - false_5 - tidak ada di pesanan tetapi status cartnya 1 dan pesanan id nya 0</button>
+                @elseif($data == 'false_6')
+                <button type="submit">Masukan keranjang - false_6 - udah ada di pesanan tapi statusnya 0 belum di checkout</button>
                 @elseif($data == 'false_sudah_keranjang')
                 <label>sudah masuk keranjang</label>
                 @elseif($data == 'notfound')
