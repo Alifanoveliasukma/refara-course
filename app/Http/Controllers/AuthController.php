@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Kursus;
+use App\Models\Contact;
 use App\Models\Payment;
 use App\Models\Pesanan;
-use App\Models\PesananDetail;
 use App\Models\Peserta;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\PesananDetail;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class AuthController extends Controller
@@ -22,6 +23,7 @@ class AuthController extends Controller
 
     public function landing_page()
     {
+       
         $kursus = Kursus::all();
         $list_category = Category::all();
         return view('landing_page.landing_page', compact('kursus', 'list_category'));
@@ -159,9 +161,11 @@ class AuthController extends Controller
 
     public function panel_dashboard()
     {
+        $pesanan = Pesanan::where('status', 1)->get();
+        $contacts = Contact::all();
         $list_category = Category::all();
         $list_kursus = Kursus::all();
-        return view('kursus.index', compact('list_category','list_kursus'));
+        return view('kursus.index', compact('list_category','list_kursus','contacts','pesanan'));
     }
 
     

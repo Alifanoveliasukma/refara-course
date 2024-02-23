@@ -55,18 +55,37 @@
     </nav>
     @endif
 
-    <!-- Navbar for user -->
+    <!-- Navbar for owner -->
     @if(auth()->guard('user')->check())
-    <nav class="navbar">
-        <a href="/panel/kursus/list-kursus">Home</a>
-        <a href="/panel/kursus/create-kursus">Create Kursus</a>
-        <a href="/panel/category/create-category">Create Kategori</a>
-        <a href="#">Halaman Owner</a>
-        <a href="/proses-logout-panel">Logout</a>
-        <a href="/panel/laporan-dari-manager">Laporan dari Manager</a>
-        <a href="#">Anda login sebagai: {{ Auth::guard('user')->user()->name }}</a>
-    </nav>
+        @if(auth()->guard('user')->user()->role === 'owner')
+            <nav class="navbar">
+                <a href="/panel/kursus/list-kursus">Home</a>
+                <a href="/panel/kursus/create-kursus">Create Kursus</a>
+                <a href="/panel/category/create-category">Create Kategori</a>
+                <a href="#">Halaman Owner</a>
+                <a href="/proses-logout-panel">Logout</a>
+                <a href="/panel/laporan-dari-manager">Laporan dari Manager</a>
+                <a href="#">Anda login sebagai: {{ Auth::guard('user')->user()->name }}</a>
+            </nav>
+        @endif
     @endif
+    
+    <!-- Navbar for manager -->
+    @if(auth()->guard('user')->check())
+        @if(auth()->guard('user')->user()->role === 'manager')
+            <nav class="navbar">
+                <a href="/panel/kursus/list-kursus">Home</a>
+                <a href="#">Halaman Manager</a>
+                <a href="/proses-logout-panel">Logout</a>
+                <a href="/panel/laporan-dari-manager">Membuat Laporan</a>
+                <a href="#">Anda login sebagai: {{ Auth::guard('user')->user()->name }}</a>
+            </nav>
+        @endif
+    @endif
+    
+    
+
+    
 
     @yield('content')
 </body>
