@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kursus;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,10 +13,11 @@ class KursusController extends Controller
 {
     public function list_kursus()
     {
-        
+        $pesanan = Pesanan::where('status', 1)->get();
+        $contacts = Contact::all();
         $list_category = Category::all();
         $list_kursus = Kursus::with('category')->latest()->paginate(10);;
-        return view('kursus.index', compact('list_kursus','list_category'));
+        return view('kursus.index', compact('list_kursus','list_category', 'contacts','pesanan'));
         
     }
     public function create_kursus()
@@ -54,7 +56,7 @@ class KursusController extends Controller
              ]);
     
             // Redirect ke halaman yang sesuai
-            return redirect('/panel/kursus/list-kursus')->with('success', 'Kursus Telah Berhasil!');
+            return redirect('/panel/data')->with('success', 'Kursus Telah Berhasil!');
         }
 
     public function edit_kursus(Request $request, $id)
@@ -96,7 +98,7 @@ class KursusController extends Controller
     {
         $kursus = Kursus::find($id);
         $kursus->delete();
-        return redirect('/panel/kursus/list-kursus')
+        return redirect('/panel/data')
                 ->withSuccess('Kursus Berhasil Di Delete!');
     }
 

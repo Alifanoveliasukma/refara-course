@@ -31,10 +31,13 @@ Route::middleware(['guest:user'])->group(function () {
 Route::middleware(['auth:user'])->group(function(){
     Route::get('/proses-logout-panel',[AuthController::class, 'proses_logout_panel']);
     Route::get('/panel/dashboard-panel',[AuthController::class, 'panel_dashboard']);
+
+    // manager
+    
     
     // owner
 
-    Route::get('/panel/kursus/list-kursus',[KursusController::class, 'list_kursus']);
+    Route::get('/panel/data',[KursusController::class, 'list_kursus']);
     Route::get('/panel/kursus/create-kursus',[KursusController::class, 'create_kursus']);
     Route::post('/panel/kursus/proses-create',[KursusController::class, 'store_kursus'])->name('store.kursus');
     Route::get('/panel/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);

@@ -59,7 +59,7 @@
     @if(auth()->guard('user')->check())
         @if(auth()->guard('user')->user()->role === 'owner')
             <nav class="navbar">
-                <a href="/panel/kursus/list-kursus">Home</a>
+                <a href="/panel/data">Home</a>
                 <a href="/panel/kursus/create-kursus">Create Kursus</a>
                 <a href="/panel/category/create-category">Create Kategori</a>
                 <a href="#">Halaman Owner</a>
@@ -74,7 +74,7 @@
     @if(auth()->guard('user')->check())
         @if(auth()->guard('user')->user()->role === 'manager')
             <nav class="navbar">
-                <a href="/panel/kursus/list-kursus">Home</a>
+                <a href="/panel/dashboard-panel">Home</a>
                 <a href="#">Halaman Manager</a>
                 <a href="/proses-logout-panel">Logout</a>
                 <a href="/panel/laporan-dari-manager">Membuat Laporan</a>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+//$2y$12$uHQrCfJtN8xN9z2UawmdWOpjj7QlYAHY5IKeou9KG2uVb0i3fJ5b6
     /**
      * Reverse the migrations.
      */

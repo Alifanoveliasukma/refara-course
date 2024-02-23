@@ -36,13 +36,13 @@
             <td>
                 <form action="/stripe" method="POST">
                     <a href="/">lanjut cari kursus</a>
-                    <input type="" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                     
-                    <input type="" name="product_name" value="{{ $pesanan_info->nama_pesanan }}">
+                    <input type="hidden" name="product_name" value="{{ $pesanan_info->nama_pesanan }}">
                    
-                    <input type="" name="quantity" value="1">
+                    <input type="hidden" name="quantity" value="1">
                     
-                    <input type="" name="price" value="{{ $pesanan_info->jumlah_harga}}">`
+                    <input type="hidden" name="price" value="{{ $pesanan_info->jumlah_harga}}">`
                     
                     
                     <button type="submit" id="checkout-live-button">Pay with stripe</button>
