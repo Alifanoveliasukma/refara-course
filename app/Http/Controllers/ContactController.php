@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    // public function index()
+    // {
+    //     // Mengambil semua pesan dari model Contact
+    //     $contacts = Contact::all();
+
+    //     // Mengirimkan data pesan ke tampilan
+    //     return view('kursus.index', compact('contacts'));
+    // }
     public function contact(Request $request)
     {
     

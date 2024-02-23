@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Kursus;
+use App\Models\Contact;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,6 +12,7 @@ class KursusController extends Controller
 {
     public function list_kursus()
     {
+        
         $list_category = Category::all();
         $list_kursus = Kursus::with('category')->latest()->paginate(10);;
         return view('kursus.index', compact('list_kursus','list_category'));
