@@ -14,6 +14,8 @@ class PesananDetail extends Model
     protected $fillable = [
         'kursus_id',
         'pesanan_id',
+        'peserta_id',
+        'status',
         'jumlah',
         'jumlah_harga'
     ];

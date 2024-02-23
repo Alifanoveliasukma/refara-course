@@ -21,9 +21,14 @@ class PesanController extends Controller
     $user =  Auth::user()->id;
     // Mengambil kursus yang diklik oleh pengguna
     $kursus = Kursus::where('id', $id)->first();
-
-    $pesananExists = Pesanan::where('kursus_id', $kursus)->exists();
-    // dd($pesananExists == False);
+        // dd($kursus->id);
+    // $pesananExists = Pesanan::where('kursus_id', $kursus->id)->where('id_peserta', $peserta_id)->first();
+    // dd($pesananExists);
+    
+    $pesananExists = PesananDetail::where('kursus_id', $kursus->id)->where('peserta_id', $peserta_id)->first();
+        // dd($pesananDetail);
+    
+    
     
     // dd($kursus);
     // $pesananExists = Pesanan::whereHas('detail_pesanan', function ($query) use ($kursus) {
@@ -64,9 +69,20 @@ class PesanController extends Controller
                 
         } else {
             if($pesanan_id == 0){
-                dd('status cartnya 1 tapi pesanan_idnya 0');
-                $data = "false_sudah_keranjang";
-                return view('kursus.detail', compact('kursus', 'data'));
+                if($pesananExists){
+                    // dd('ada di cart');
+                    if($pesananExists->status == 0){
+                        $data = "false_sudah_keranjang";
+                        return view('kursus.detail', compact('kursus', 'data'));
+                    }
+                    $data = "false_6";
+                    return view('kursus.detail', compact('kursus', 'data'));
+                }
+                // dd('ga ada di cart');
+                    $data = "false_5";
+                    return view('kursus.detail', compact('data', 'kursus'));
+                // dd('status cartnya 1 tapi pesanan_idnya 0');
+                
             } else {
                 if ($isPurchased) {
                         $data = "true";
@@ -78,15 +94,15 @@ class PesanController extends Controller
                         $data = "false_3";
                         // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
                         return view('kursus.detail', compact('data', 'kursus'));
-                    }
-                    if ($pesanan->status == 0){
-                        // dd('false_sudah keranjang');
+                    }elseif ($pesananExists){
                         $data = "false_sudah_keranjang";
-                        return view('kursus.detail', compact('data', 'kursus'));
-                    } 
+                        return view('kursus.detail', compact('kursus', 'data'));
+                    } else{
                         $data = "false_2";
                         // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
                         return view('kursus.detail', compact('data', 'kursus'));
+                    }
+                        
                         
                 }
                     $data = "notfound";
@@ -147,6 +163,7 @@ class PesanController extends Controller
             $pesanan->kursus_id = $kursus->id;
             $pesanan->tanggal = $tanggal;
             $pesanan->status = 0;
+            $pesanan->nama_pesanan = "kursus refara";
             $pesanan->jumlah_harga = 0;
             $pesanan->save();
        }
@@ -160,6 +177,8 @@ class PesanController extends Controller
         {
             $pesanan_detail = new PesananDetail;
             $pesanan_detail->kursus_id = $kursus->id;
+            $pesanan_detail->peserta_id = Auth::user()->id;
+            $pesanan_detail->status = 0;
             $pesanan_detail->pesanan_id = $pesanan_baru->id;
             $pesanan_detail->jumlah = $request->jumlah_pesan;
             $pesanan_detail->jumlah_harga = $kursus->harga_kursus*$request->jumlah_pesan;
@@ -207,10 +226,25 @@ class PesanController extends Controller
 
     public function checkout_kursus()
     {
-        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status',0)->first();
-        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        $peserta_id = Auth::id();
+        // $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status',0)->first();
+        // $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        // $kursus = $pesanan_details->kursus_id;
+        // dd($kursus);
+        // dd($pesanan_details);
+        $pesanan_info = Pesanan::where('id_peserta', $peserta_id)->where('status', 0)->first();
+        // dd($pesanan_info->nama_pesanan);
+        $pesanan = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
+        // dd($pesanan);
+        // $pesanandetail = PesananDetail::where('pesanan_id', $pesanan)->get();
+        // dd($pesanandetail);
 
-        return view('pesan.checkout', compact('pesanan', 'pesanan_details'));
+
+        // $kursus = $pesananDetails->kursus;
+        // $namaKursus = $kursus->nama_kursus;
+        
+
+        return view('pesan.checkout', compact('pesanan', 'pesanan_info'));
     }
 
     public function delete($id)
@@ -223,17 +257,17 @@ class PesanController extends Controller
 
         $pesanan_detail->delete();
 
-        $status_cart = 0;
-        $id_peserta = Auth::user()->id;
+        // $status_cart = 0;
+        // $id_peserta = Auth::user()->id;
         
-        $data = [
-            'status_cart' => $status_cart,
-        ];
+        // $data = [
+        //     'status_cart' => $status_cart,
+        // ];
         
         // Lakukan update data berdasarkan id_peserta
-        $update = DB::table('list_peserta')
-            ->where('id', $id_peserta)
-            ->update($data);
+        // $update = DB::table('list_peserta')
+        //     ->where('id', $id_peserta)
+        //     ->update($data);
         
         return redirect('/checkout')->withSuccess('pesanan sukses di hapus');;
     }

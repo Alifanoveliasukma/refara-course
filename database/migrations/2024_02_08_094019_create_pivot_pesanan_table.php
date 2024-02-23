@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_peserta')->nullable();
             $table->unsignedBigInteger('kursus_id')->nullable();
             $table->string('status');
+            $table->string('nama_pesanan');
             $table->date('tanggal');
             $table->integer('jumlah_harga');
             $table->timestamps();

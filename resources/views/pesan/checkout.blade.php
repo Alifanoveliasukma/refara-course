@@ -3,7 +3,7 @@
 <table>
     <thead>
         <h2>Check out</h2>
-        <p>Tanggal Pesan : {{ $pesanan->tanggal }}</p>
+        <p>Tanggal Pesan : {{ $pesanan_info->tanggal }}</p>
         <tr>
             <th>no</th>
             <th>Nama kursus</th>
@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         <?php $no = 1; ?>
-        @foreach ($pesanan_details as $item)
+        @foreach ($pesanan as $item)
         <tr>
             <td>{{$no++}}</td>
             <td>{{ $item->kursus->nama_kursus}}</td>
@@ -31,16 +31,20 @@
         <tr>
             <td colspan="4" align="left"><strong>Total Harga :</strong></td>
             <br>
-            <td><strong>Rp. {{ number_format($pesanan->jumlah_harga)}}</strong></td>
+           
+            <td><strong>Rp. {{ number_format($pesanan_info->jumlah_harga) }}</strong></td>
             <td>
                 <form action="/stripe" method="POST">
                     <a href="/">lanjut cari kursus</a>
-                    @foreach ($pesanan_details as $item)
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="hidden" name="product_name" value="{{ $item->kursus->nama_kursus }}">
-                    @endforeach
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="price" value="{{ $pesanan->jumlah_harga}}">
+                    <input type="" name="_token" value="{{csrf_token()}}">
+                    
+                    <input type="" name="product_name" value="{{ $pesanan_info->nama_pesanan }}">
+                   
+                    <input type="" name="quantity" value="1">
+                    
+                    <input type="" name="price" value="{{ $pesanan_info->jumlah_harga}}">`
+                    
+                    
                     <button type="submit" id="checkout-live-button">Pay with stripe</button>
                 </form>
             </td>
