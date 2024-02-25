@@ -14,7 +14,10 @@ class StripeController extends Controller
 {
     public function cek(Request $request)
     {
-        // $peserta_id = Auth::user()->id;
+        
+        $peserta_id = Auth::user()->id;
+        $pesanan_details = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
+// dd($pesanan_details);
         // $pesanan_details = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
         //     // Simpan setiap objek ke dalam tabel lain
         //     $pesanan_details->each(function ($pesanan_detail) {
@@ -74,11 +77,13 @@ class StripeController extends Controller
         $pesanan_details = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
 
         // Simpan setiap objek ke dalam tabel lain
-        $pesanan_details->each(function ($pesanan_detail) {
+        $pesanan_details->each(function ($pesanan_detail) 
+        {
             Data::create([
                 'peserta_id' => $pesanan_detail->peserta_id,
                 'kursus_id' => $pesanan_detail->kursus_id,
                 'pesanan_id' => $pesanan_detail->pesanan_id,
+                'pesanan_detail_id' => $pesanan_detail->id,
                 // ... tambahkan kolom lain sesuai kebutuhan
             ]);
         });

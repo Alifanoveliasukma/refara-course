@@ -15,11 +15,12 @@ class Data extends Model
         'peserta_id',
         'kursus_id',
         'pesanan_id',
+        'pesanan_detail_id',
     ];
 
     public function peserta()
     {
-        return $this->belongsTo(Peserta::class, 'kursus_id');
+        return $this->belongsTo(Peserta::class, 'peserta_id');
     }
 
     public function kursus()
