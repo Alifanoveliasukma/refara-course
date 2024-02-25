@@ -39,6 +39,7 @@
         @else
             <a href="/">Refara</a>
             <a href="/dashboard">Halaman Peserta</a>
+            <a href="/dashboard/riwayat-pesanan">Riwayat Pesanan</a>
             <a href="#">Peserta bernama:  {{ Auth::guard('peserta')->user()->nama }}</a>
             <a href="/proses-logout-peserta">Logout</a>
             <?php

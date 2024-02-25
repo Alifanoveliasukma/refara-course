@@ -32,9 +32,6 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/proses-logout-panel',[AuthController::class, 'proses_logout_panel']);
     Route::get('/panel/dashboard-panel',[AuthController::class, 'panel_dashboard']);
 
-    // manager
-    
-    
     // owner
 
     Route::get('/panel/data',[KursusController::class, 'list_kursus']);
@@ -75,6 +72,7 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
     Route::get('/konfirmasi-checkout', [PesanController::class, 'checkout-konfirmasi']);
+    Route::get('/dashboard/riwayat-pesanan', [PesanController::class, 'riwayat_pesanan']);
 
     // kursus yang dibeli
     Route::get('/dashboard/kursus/{id}', [PesanController::class, 'belajar_kursus']);
