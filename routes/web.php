@@ -7,6 +7,7 @@ use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TailwindController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Tailwind
+Route::get('/test', [TailwindController::class, 'test']);
 
 // panel
 Route::middleware(['guest:user'])->group(function () {
@@ -32,9 +34,6 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/proses-logout-panel',[AuthController::class, 'proses_logout_panel']);
     Route::get('/panel/dashboard-panel',[AuthController::class, 'panel_dashboard']);
 
-    // manager
-    
-    
     // owner
 
     Route::get('/panel/data',[KursusController::class, 'list_kursus']);
@@ -75,6 +74,7 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
     Route::get('/konfirmasi-checkout', [PesanController::class, 'checkout-konfirmasi']);
+    Route::get('/dashboard/riwayat-pesanan', [PesanController::class, 'riwayat_pesanan']);
 
     // kursus yang dibeli
     Route::get('/dashboard/kursus/{id}', [PesanController::class, 'belajar_kursus']);

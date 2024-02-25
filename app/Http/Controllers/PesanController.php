@@ -271,4 +271,18 @@ class PesanController extends Controller
         
         return redirect('/checkout')->withSuccess('pesanan sukses di hapus');;
     }
+
+    public function riwayat_pesanan(){
+        $peserta_id = Auth::id();
+        $history = Data::where('peserta_id', $peserta_id)->get();
+        return view('pesan.history', compact('history'));
+        // foreach ($history as $data) {
+        //     // Mengakses relasi menggunakan relasi yang sudah didefinisikan di model
+        //     $relasi = $data->kursus->nama_kursus;
+        //     dd($relasi); // Ganti 'nama_relasi' dengan nama relasi yang sesuai
+        //     // Lakukan sesuatu dengan relasi
+        // }
+
+        
+    }
 }
