@@ -7,6 +7,7 @@ use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TailwindController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Tailwind
+Route::get('/test', [TailwindController::class, 'test']);
 
 // panel
 Route::middleware(['guest:user'])->group(function () {
