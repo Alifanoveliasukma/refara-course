@@ -42,6 +42,7 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/panel/kursus/edit-kursus/{id}',[KursusController::class, 'edit_kursus']);
     Route::delete('/panel/kursus/delete-kursus/{id}',[KursusController::class, 'delete_kursus'])->name('kursus.delete');
     Route::put('/panel/kursus/proses-edit/{id}', [KursusController::class, 'proses_edit_kursus'])->name('kursus.prosesEdit');
+    Route::get('/panel/kursus/show/{id}', [KursusController::class, 'detail_kursus']);
     Route::get('/panel/laporan-dari-manager', [PanelController::class, 'laporan_manager']);
     
     //category
