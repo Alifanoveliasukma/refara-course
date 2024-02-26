@@ -7,7 +7,7 @@
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
-            </div>
+            </div><p>
             @endif
             @if (session()->has('notif.success'))
                 <div class="alert alert-success">
