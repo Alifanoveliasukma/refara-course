@@ -7,12 +7,21 @@
             @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
-            </div>
+            </div><p>
             @endif
+            @if (session()->has('notif.success'))
+                <div class="alert alert-success">
+                    {{ session('notif.success') }}
+                </div>
+            @endif
+
             <ul class="list-kursus">
                 @foreach ($list_kursus as $item)
+                <th>Image</th>
+                <td><img src="{{ Storage::url($item->image) }}" class="img-thumbnail" style="width:50px" /></td>
                     <li>Kursus: {{$item->nama_kursus}} <span>kategori : {{$item->category->nama_category}}</span>
                     <a href="/panel/kursus/edit-kursus/{{$item->id}}">edit</a>
+                    <a href="/panel/kursus/show/{{$item->id}}">show</a>
                     <form action="{{ route('kursus.delete', $item->id) }}" method="post" class="d-inline">
                         @csrf
                         @method('DELETE')

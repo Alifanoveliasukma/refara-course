@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KursusRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Models\Kursus;
 use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class KursusController extends Controller
 {
@@ -26,37 +29,26 @@ class KursusController extends Controller
         return view('kursus.create-kursus', compact('category'));
     }
 
-    public function store_kursus(Request $request)
+    public function store_kursus(KursusRequest $request)
         {
-                // Validasi input
-            $request->validate([
-                'nama_kursus' => ['required', 'string', 'max:255'],
-                'nama_pembuat' => ['required', 'string', 'max:255'],
-                'deskripsi_kursus' => ['required', 'string'],
-                'durasi_kursus' => ['nullable', 'string', 'max:255'],
-                'level' => ['required', 'string'],
-                'harga_kursus' => ['required', 'integer', 'min:0'],
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'category_id' => 'required|exists:App\Models\Category,id',
-            ]);
+            $validated = $request->validated();
 
-            // Simpan gambar
-            $imagePath = $request->file('image')->store('image-course');
+            if ($request->hasFile('image')) {
+                // put image in the public storage
+                $filePath = Storage::disk('public')->put('images/posts/featured-images', request()->file('image'));
+                $validated['image'] = $filePath;
+            }
 
-            // Simpan data kursus ke database
-            $kursus = Kursus::create([
-                'nama_kursus' => $request->nama_kursus,
-                'nama_pembuat' => $request->nama_pembuat,
-                'deskripsi_kursus' => $request->deskripsi_kursus,
-                'durasi_kursus' => $request->durasi_kursus,
-                'level' => $request->level,
-                'harga_kursus' => $request->harga_kursus,
-                'image' => $imagePath,
-                'category_id' => $request->category_id,
-             ]);
-    
-            // Redirect ke halaman yang sesuai
-            return redirect('/panel/data')->with('success', 'Kursus Telah Berhasil!');
+            // insert only requests that already validated in the StoreRequest
+            $create = Kursus::create($validated);
+
+            if($create) {
+                // add flash for the success notification
+                session()->flash('notif.success', 'Post created successfully!');
+                return redirect('/panel/data')->with('success', 'berhasil di update');
+            }
+
+            return abort(500);
         }
 
     public function edit_kursus(Request $request, $id)
@@ -67,31 +59,27 @@ class KursusController extends Controller
     }
 
 
-    public function proses_edit_kursus(Request $request, $id)
+    public function proses_edit_kursus(UpdateRequest $request, $id)
     {
+        $post = Kursus::findOrFail($id);
+        $validated = $request->validated();
 
-        $kursus = Kursus::findorfail($id);
-        $kursus->update($request->all());
-        // $request->validate([
-        //     'nama_kursus' => 'required|string|min:5',
-        //     'nama_pembuat' => 'required|string',
-        //     'deskripsi_kursus' => 'required|string|min:10',
-        //     'harga_kursus' => 'required|numeric',
-        // ]);
+        if ($request->hasFile('image')) {
+            // delete image
+            Storage::disk('public')->delete($post->image);
 
-        // // Temukan kursus yang akan diubah berdasarkan ID
-        // $kursus = Kursus::findOrFail($id);
+            $filePath = Storage::disk('public')->put('images/posts/featured-images', request()->file('image'), 'public');
+            $validated['image'] = $filePath;
+        }
+        $update = $post->update($validated);
+        
+        if($update) {
+            session()->flash('notif.success', 'kursus updated successfully!');
+            return redirect('/panel/data');
+        }
 
-        // // Update data kursus
-        // $kursus->update([
-        //     'nama_kursus' => $request->nama_kursus,
-        //     'nama_pembuat' => $request->nama_pembuat,
-        //     'deskripsi_kursus' => $request->deskripsi_kursus,
-        //     'harga_kursus' => $request->harga_kursus,
-        // ]);
+        return abort(500);
 
-        // Redirect ke halaman index atau halaman lainnya setelah berhasil diubah
-        return redirect('panel/kursus/list-kursus');
     }
 
     public function delete_kursus($id)
@@ -102,7 +90,12 @@ class KursusController extends Controller
                 ->withSuccess('Kursus Berhasil Di Delete!');
     }
 
-
+    public function detail_kursus($id)
+    {
+        return response()->view('kursus.show',[
+            'kursus' => Kursus::findOrFail($id),
+        ]);
+    }
 
     
 
