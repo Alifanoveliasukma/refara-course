@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // Tailwind
 Route::get('/test', [TailwindController::class, 'test']);
+ROute::get('/login-peserta', [AuthController::class, 'login_page']);
 
 // panel
 Route::middleware(['guest:user'])->group(function () {

@@ -168,5 +168,8 @@ class AuthController extends Controller
         return view('kursus.index', compact('list_category','list_kursus','contacts','pesanan'));
     }
 
-    
+    public function login_page()
+    {
+        return view ('frontend.auth.login');
+    }
 }
