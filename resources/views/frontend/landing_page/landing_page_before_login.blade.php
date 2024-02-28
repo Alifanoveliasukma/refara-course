@@ -80,4 +80,31 @@
             
     </div>
 </div>
+{{-- section 4 --}}
+<div class="w-[1366px] h-[731px] pl-[170px] pr-[169.98px] pt-20 pb-[49px] flex-col justify-end items-center gap-[54px] inline-flex">
+    <div class="h-[131px] flex-col justify-center items-center gap-5 inline-flex">
+        <div class="text-orange-400 text-[25px] font-semibold font-['Roboto'] leading-[29.75px]">Teachers</div>
+        <div class="w-[574px] h-[60px] text-center text-slate-950 text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Belajar dari Instruktur Berkualitas Tinggi yang Berpengalaman Dan Bersertifikat</div>
+    </div>
+    <div class="self-stretch justify-start items-start gap-[135px] inline-flex">
+        <div class="flex-col justify-center items-center gap-[18px] inline-flex">
+            <img class="w-[252px] h-[252px] rounded-full" src="{{ asset ('assets/Ellipse 15.png') }}" />
+            <div class="w-[199px] h-[63px] text-center text-black text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Rangga Priago Pratomo</div>
+            <div class="w-[252.01px] h-[0px] border border-zinc-400"></div>
+            <div class="w-[245px] h-12 text-neutral-500 text-lg font-normal font-['Roboto'] leading-snug">UI/UX Designer at Gunadarma University Computing Center</div>
+        </div>
+        <div class="flex-col justify-center items-center gap-[18px] inline-flex">
+            <img class="w-[252px] h-[252px] rounded-full" src="{{ asset ('assets/Ellipse 16.png') }}" />
+            <div class="w-[199px] h-[63px] text-center text-black text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Alifa Novelia Sukma</div>
+            <div class="w-[252.01px] h-[0px] border border-zinc-400"></div>
+            <div class="w-[245px] h-12 text-neutral-500 text-lg font-normal font-['Roboto'] leading-snug">Web Developer at Gunadarma University Computing Center</div>
+        </div>
+        <div class="flex-col justify-center items-center gap-[18px] inline-flex">
+            <img class="w-[252px] h-[252px] rounded-full" src="{{ asset ('assets/Ellipse 17.png') }}" />
+            <div class="w-[199px] h-[63px] text-center text-black text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Reviva Aiman</div>
+            <div class="w-[252.01px] h-[0px] border border-zinc-400"></div>
+            <div class="w-[245px] h-12 text-neutral-500 text-lg font-normal font-['Roboto'] leading-snug">Web Developer at Gunadarma University Computing Center</div>
+        </div>
+    </div>
+</div>
 @endsection
