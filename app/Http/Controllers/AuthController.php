@@ -23,7 +23,7 @@ class AuthController extends Controller
     //frontend
     public function landing_page_fe()
     {
-        return view('frontend.kursus.index');
+        return view('frontend.landing_page.landing_page_before_login');
     }
     //dev
 
