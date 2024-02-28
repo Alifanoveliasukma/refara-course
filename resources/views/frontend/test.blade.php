@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,3 +61,4 @@
     @yield('content')
 </body>
 </html>
+
