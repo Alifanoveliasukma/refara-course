@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateRequest;
 use App\Models\Kursus;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Models\Data;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,12 +17,12 @@ class KursusController extends Controller
 {
     public function list_kursus()
     {
-        $pesanan = Pesanan::where('status', 1)->get();
+        
+        $pesanan = Data::all();
         $contacts = Contact::all();
         $list_category = Category::all();
-        $list_kursus = Kursus::with('category')->latest()->paginate(10);;
+        $list_kursus = Kursus::with('category')->latest()->paginate(10);
         return view('kursus.index', compact('list_kursus','list_category', 'contacts','pesanan'));
-        
     }
     public function create_kursus()
     {
@@ -95,6 +96,42 @@ class KursusController extends Controller
         return response()->view('kursus.show',[
             'kursus' => Kursus::findOrFail($id),
         ]);
+    }
+
+    public function aktifkan($id)
+    {
+        $status_masa_aktif = 0;
+        try {
+            $data = [
+                'status_masa_aktif' => $status_masa_aktif,
+            ];
+            $simpan = DB::table('data_lengkap')->where('id', $id)->update($data);
+
+            if($simpan){
+                return redirect('/panel/data');
+            }
+        } catch (\Exception $e) {
+            return redirect('panel/data')->with('success', 'kursus di aktif kan');
+        }
+        
+    }
+
+    public function non_aktifkan($id)
+    {
+        $status_masa_aktif = 1;
+        try {
+            $data = [
+                'status_masa_aktif' => $status_masa_aktif,
+            ];
+            $simpan = DB::table('data_lengkap')->where('id', $id)->update($data);
+
+            if($simpan){
+                return redirect('/panel/data');
+            }
+        } catch (\Exception $e) {
+            return redirect('panel/data')->with('success', 'kursus di non aktif kan');
+        }
+
     }
 
     

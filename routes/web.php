@@ -52,11 +52,19 @@ Route::middleware(['auth:user'])->group(function(){
     Route::get('/panel/category/edit-category/{id}',[CategoryController::class, 'edit_category']);
     Route::delete('/panel/category/delete-category/{id}',[CategoryController::class, 'delete_category'])->name('category.delete');
     Route::put('/panel/category/proses-edit/{id}', [CategoryController::class, 'proses_edit_category'])->name('category.prosesEdit');
+    Route::get('/panel/category/show/{id}', [KursusController::class, 'kategori_kursus']);
+
+    //manager
+    Route::get('/status-kursus/aktif/{id}', [KursusController::class, 'aktifkan']);
+    Route::get('/status-kursus/non-aktif/{id}', [KursusController::class, 'non_aktifkan']);
+    Route::get('/send-report/{id}', [PesanController::class, 'send_owner']);
 
     });
 
 
-Route::middleware(['guest:peserta'])->group(function () {
+    //peserta
+
+    Route::middleware(['guest:peserta'])->group(function () {
     Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
     Route::post('/proses-login',[AuthController::class, 'proseslogin']);
     Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
