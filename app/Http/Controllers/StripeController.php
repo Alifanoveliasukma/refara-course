@@ -75,15 +75,20 @@ class StripeController extends Controller
         // $data_lengkap->save();
         // dd($data_lengkap->kursus_id);
         $pesanan_details = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
+        
 
         // Simpan setiap objek ke dalam tabel lain
         $pesanan_details->each(function ($pesanan_detail) 
         {
+        $status_masa_aktif = 0;
+        $status_owner = 0;
             Data::create([
                 'peserta_id' => $pesanan_detail->peserta_id,
                 'kursus_id' => $pesanan_detail->kursus_id,
                 'pesanan_id' => $pesanan_detail->pesanan_id,
                 'pesanan_detail_id' => $pesanan_detail->id,
+                'status_masa_aktif' => $status_masa_aktif,
+                'status_owner' => $status_owner,
                 // ... tambahkan kolom lain sesuai kebutuhan
             ]);
         });
