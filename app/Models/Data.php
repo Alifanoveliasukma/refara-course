@@ -15,6 +15,8 @@ class Data extends Model
         'peserta_id',
         'kursus_id',
         'pesanan_id',
+        'status_masa_aktif',
+        'status_owner',
         'pesanan_detail_id',
     ];
 

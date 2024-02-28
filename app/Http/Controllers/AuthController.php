@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Pesanan;
 use App\Models\Peserta;
 use App\Models\Category;
+use App\Models\Data;
 use Illuminate\Http\Request;
 use App\Models\PesananDetail;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,11 @@ class AuthController extends Controller
 
     public function landing_page()
     {
-       
+        
+        // if($pesananExists->status == 0){
+        //     $data = "false_sudah_keranjang";
+        //     return view('kursus.detail', compact('kursus', 'data'));
+        // }
         $kursus = Kursus::all();
         $list_category = Category::all();
         return view('landing_page.landing_page', compact('kursus', 'list_category'));
@@ -130,12 +135,13 @@ class AuthController extends Controller
 
     public function index()
     {
-        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 1)->get();
+        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->get();
         $list_peserta = Peserta::where('id', Auth::user()->id)->first();
         
         if ($pesanan->isNotEmpty()) {
             // Jika ada pesanan yang terkait dengan pengguna saat ini
-            $pesanan_peserta = PesananDetail::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
+            $pesanan_peserta = Data::whereIn('peserta_id', $pesanan->pluck('id'))->get();
+            // $pesanan_peserta = PesananDetail::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
             // dd($pesanan_peserta);
             return view('peserta.dashboard', compact('pesanan_peserta', 'pesanan'));
         } else {
@@ -143,6 +149,7 @@ class AuthController extends Controller
             $data_lain = "Data lain yang ingin ditampilkan jika tidak ada pesanan terkait";
             return view('peserta.dashboard', compact('data_lain'));
         }
+        
         
     }
 
@@ -157,7 +164,7 @@ class AuthController extends Controller
     public function proses_login_panel(Request $request)
     {
         if(Auth::guard('user')->attempt(['email'=> $request->email, 'password' => $request->password])){
-            return redirect('/panel/dashboard-panel');
+            return redirect('/panel/data');
         } else {
             return redirect('/panel')->with(['warning' => 'Email / Password Salah']);
         }
@@ -172,7 +179,7 @@ class AuthController extends Controller
 
     public function panel_dashboard()
     {
-        $pesanan = Pesanan::where('status', 1)->get();
+        $pesanan = Data::all();
         $contacts = Contact::all();
         $list_category = Category::all();
         $list_kursus = Kursus::all();
