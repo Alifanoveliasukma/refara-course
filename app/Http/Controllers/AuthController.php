@@ -17,8 +17,16 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
+use function PHPUnit\Framework\returnValueMap;
+
 class AuthController extends Controller
 {
+    //frontend
+    public function landing_page_fe()
+    {
+        return view('frontend.kursus.index');
+    }
+    //dev
 
     // peserta
 
@@ -33,6 +41,7 @@ class AuthController extends Controller
         $list_category = Category::all();
         return view('landing_page.landing_page', compact('kursus', 'list_category'));
     }
+
 
     public function search(Request $request)
     {
@@ -175,5 +184,8 @@ class AuthController extends Controller
         return view('kursus.index', compact('list_category','list_kursus','contacts','pesanan'));
     }
 
-    
+    public function login_page()
+    {
+        return view ('frontend.auth.login');
+    }
 }

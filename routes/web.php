@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 // Tailwind
 Route::get('/test', [TailwindController::class, 'test']);
-
+ROute::get('/login-peserta', [AuthController::class, 'login_page']);
+Route::get('/',[AuthController::class, 'landing_page_fe']);
 // panel
 Route::middleware(['guest:user'])->group(function () {
     Route::get('/panel', [AuthController::class, 'login_panel'])->name('loginadmin');
@@ -97,7 +98,7 @@ Route::middleware(['auth:peserta'])->group(function(){
     // landing page
 });
 
-Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+// Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 Route::get('/search', [AuthController::class, 'search']);
 Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
