@@ -50,6 +50,7 @@
         <label for="current_image">Pilih Gambar Kursus</label><br>
         <img src="{{ Storage::url($kursus->image) }}" class="img-thumbnail" style="width:100px" /><br>
         <input type="file" class="form-control-file" id="image" name="image" >
+       
     </div>
     <div>
         <button type="submit">Edit Kursus</button>
