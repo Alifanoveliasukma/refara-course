@@ -57,7 +57,7 @@ class PesanController extends Controller
                         $data = "false_2";
                         return view('kursus.detail', compact('data', 'kursus'));
                         // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
-                }
+                }   
                     $data = "notfound";
                     return view('kursus.detail', compact('kursus', 'data'));
 
@@ -282,7 +282,23 @@ class PesanController extends Controller
         //     dd($relasi); // Ganti 'nama_relasi' dengan nama relasi yang sesuai
         //     // Lakukan sesuatu dengan relasi
         // }
+       
+    }
 
-        
+    public function send_owner($id)
+    {
+        $status_owner = 1;
+        try {
+            $data = [
+                'status_owner' => $status_owner,
+            ];
+            $simpan = DB::table('data_lengkap')->where('id', $id)->update($data);
+
+            if($simpan){
+                return redirect('/panel/data');
+            }
+        } catch (\Exception $e) {
+            return redirect('panel/data');
+        }
     }
 }
