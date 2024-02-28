@@ -86,7 +86,7 @@
         <div class="text-orange-400 text-[25px] font-semibold font-['Roboto'] leading-[29.75px]">Teachers</div>
         <div class="w-[574px] h-[60px] text-center text-slate-950 text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Belajar dari Instruktur Berkualitas Tinggi yang Berpengalaman Dan Bersertifikat</div>
     </div>
-    <div class="self-stretch justify-start items-start gap-[135px] inline-flex">
+    <div class="w-[1026.02px] h-[417px] justify-start items-start gap-[135px] inline-flex">
         <div class="flex-col justify-center items-center gap-[18px] inline-flex">
             <img class="w-[252px] h-[252px] rounded-full" src="{{ asset ('assets/Ellipse 15.png') }}" />
             <div class="w-[199px] h-[63px] text-center text-black text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Rangga Priago Pratomo</div>
@@ -104,6 +104,45 @@
             <div class="w-[199px] h-[63px] text-center text-black text-[25px] font-medium font-['Roboto'] leading-[29.75px]">Reviva Aiman</div>
             <div class="w-[252.01px] h-[0px] border border-zinc-400"></div>
             <div class="w-[245px] h-12 text-neutral-500 text-lg font-normal font-['Roboto'] leading-snug">Web Developer at Gunadarma University Computing Center</div>
+        </div>
+    </div>
+</div>
+{{-- section 5 --}}
+<div class="w-[1366px] h-[762px] relative">
+    <div class="w-[411px] h-[87px] left-[478px] top-[98px] absolute">
+        <div class="left-[147px] top-0 absolute text-orange-400 text-xl font-bold font-['Roboto']">Testimonials</div>
+        <div class="left-0 top-[35px] absolute text-center text-black text-3xl font-medium font-['Roboto']">Jadilah Salah Satu Dari Merka!</div>
+    </div>
+    <div class="h-[516px] left-[127.50px] top-[219px] absolute justify-center items-center gap-[30px] inline-flex mt-10">
+        <div class="w-[350px] flex-col justify-center items-center gap-[31px] inline-flex">
+            <img class="w-[207px] h-[231px] rounded-[30px] shadow" src="{{ asset ('assets/Rectangle 12.png') }}" />
+            <div class="w-[163px] h-7 relative">
+                <div class="w-[163px] h-7 left-0 top-0 absolute bg-white bg-opacity-20 rounded-[10px] backdrop-blur-[5px]"></div>
+                <div class="w-[93.44px] h-[13.38px] left-[35px] top-[7px] absolute justify-center items-center gap-1.5 inline-flex"></div>
+            </div>
+            <div class="text-center text-black text-[23px] font-semibold font-['Roboto']">Richard Max</div>
+            <div class="text-center text-neutral-500 text-lg font-normal font-['Roboto']">Back-end Developer</div>
+            <div class="w-80 text-center text-slate-600 text-[15px] font-normal font-['Roboto']">“Instruktur hebat, materi praktis, dan komunitas dukungan yang tak tertandingi. Kursus ini mengubah karir saya sepenuhnya. Saya merasa didukung dan terinspirasi oleh rekan kursus. Bergabunglah sekarang dan siapkan diri Anda untuk langkah besar berikutnya dalam mencapai impian karir Anda.”</div>
+        </div>
+        <div class="w-[350px] h-[507px] flex-col justify-center items-center gap-[31px] inline-flex">
+            <img class="w-[207px] h-[231px] rounded-[30px] shadow" src="{{ asset ('assets/Rectangle 12 (1).png') }}" />
+            <div class="w-[163px] h-7 relative">
+                <div class="w-[163px] h-7 left-0 top-0 absolute bg-white bg-opacity-20 rounded-[10px] backdrop-blur-[5px]"></div>
+                <div class="w-[93.44px] h-[13.38px] left-[35px] top-[7px] absolute justify-center items-center gap-1.5 inline-flex"></div>
+            </div>
+            <div class="text-center text-black text-[23px] font-semibold font-['Roboto']">Natan Lim</div>
+            <div class="text-center text-neutral-500 text-lg font-normal font-['Roboto']">Front-end Developer</div>
+            <div class="w-80 text-center text-slate-600 text-[15px] font-normal font-['Roboto']">Materi kursus yang efektif dan instruktur yang menginspirasi. Melalui kursus ini, saya meraih pengetahuan baru dan meningkatkan keterampilan yang relevan dengan industri. Dukungan komunitas yang luar biasa membuat perjalanan belajar lebih menyenangkan. Terima kasih, kursus ini benar-benar mengubah hidup saya!</div>
+        </div>
+        <div class="w-[350px] flex-col justify-center items-center gap-[31px] inline-flex">
+            <img class="w-[207px] h-[231px] rounded-[30px] shadow" src="{{ asset ('assets/Rectangle 12 (2).png') }}" />
+            <div class="w-[163px] h-7 relative">
+                <div class="w-[163px] h-7 left-0 top-0 absolute bg-white bg-opacity-20 rounded-[10px] backdrop-blur-[5px]"></div>
+                <div class="w-[93.44px] h-[13.38px] left-[35px] top-[7px] absolute justify-center items-center gap-1.5 inline-flex"></div>
+            </div>
+            <div class="text-center text-black text-[23px] font-semibold font-['Roboto']">Christine Grace</div>
+            <div class="text-center text-neutral-500 text-lg font-normal font-['Roboto']">Designer</div>
+            <div class="w-80 text-center text-slate-600 text-[15px] font-normal font-['Roboto']">Saya sungguh puas dengan pengalaman belajar melalui kursus ini. Materi yang disajikan sangat terstruktur dan mudah dipahami. Instruktur sangat berpengetahuan dan responsif terhadap pertanyaan saya. Dukungan dari komunitas rekan kursus juga luar biasa. Saya merasa lebih siap dalam menghadapi tantangan karir berkat kursus ini.</div>
         </div>
     </div>
 </div>
