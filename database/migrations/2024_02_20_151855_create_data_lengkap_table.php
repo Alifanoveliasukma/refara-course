@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('kursus_id')->nullable();
             $table->unsignedBigInteger('pesanan_id')->nullable();
             $table->unsignedBigInteger('pesanan_detail_id')->nullable();
+            $table->unsignedBigInteger('status_masa_aktif')->nullable();
+            $table->unsignedBigInteger('status_owner')->nullable();
             $table->timestamps();
 
             $table->foreign('kursus_id')->references('id')->on('content_course');
