@@ -25,7 +25,8 @@ class AuthController extends Controller
 
     public function beranda()
     {
-        return view('frontend.dashboard.beranda');
+        $list_category = Category::all();
+        return view('frontend.dashboard.beranda',  compact('list_category'));
     }
     public function landing_page_fe()
     {

@@ -702,6 +702,42 @@ video {
 .top-\[16px\] {
   top: 16px;
 }
+.left-\[17px\] {
+  left: 17px;
+}
+.left-\[7px\] {
+  left: 7px;
+}
+.top-\[149px\] {
+  top: 149px;
+}
+.top-\[203px\] {
+  top: 203px;
+}
+.top-\[210px\] {
+  top: 210px;
+}
+.top-\[213px\] {
+  top: 213px;
+}
+.top-\[216px\] {
+  top: 216px;
+}
+.top-\[235px\] {
+  top: 235px;
+}
+.top-\[238px\] {
+  top: 238px;
+}
+.top-\[241px\] {
+  top: 241px;
+}
+.top-\[64px\] {
+  top: 64px;
+}
+.top-\[6px\] {
+  top: 6px;
+}
 .z-10 {
   z-index: 10;
 }
@@ -983,6 +1019,21 @@ video {
 .h-full {
   height: 100%;
 }
+.h-80 {
+  height: 20rem;
+}
+.h-\[154px\] {
+  height: 154px;
+}
+.h-\[29px\] {
+  height: 29px;
+}
+.h-\[46px\] {
+  height: 46px;
+}
+.h-\[606px\] {
+  height: 606px;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1165,6 +1216,24 @@ video {
 }
 .w-\[485px\] {
   width: 485px;
+}
+.w-\[1036px\] {
+  width: 1036px;
+}
+.w-\[174px\] {
+  width: 174px;
+}
+.w-\[179px\] {
+  width: 179px;
+}
+.w-\[186px\] {
+  width: 186px;
+}
+.w-\[206px\] {
+  width: 206px;
+}
+.w-\[220px\] {
+  width: 220px;
 }
 .max-w-7xl {
   max-width: 80rem;
@@ -1366,6 +1435,9 @@ video {
 .gap-\[1\.1px\] {
   gap: 1.1px;
 }
+.gap-\[52px\] {
+  gap: 52px;
+}
 .self-center {
   align-self: center;
 }
@@ -1477,6 +1549,10 @@ video {
 .border-zinc-400 {
   --tw-border-opacity: 1;
   border-color: rgb(161 161 170 / var(--tw-border-opacity));
+}
+.border-stone-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(214 211 209 / var(--tw-border-opacity));
 }
 .border-opacity-40 {
   --tw-border-opacity: 0.4;
@@ -1863,6 +1939,9 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-\[11px\] {
+  font-size: 11px;
+}
 .font-black {
   font-weight: 900;
 }
@@ -1984,6 +2063,14 @@ video {
 .text-neutral-400 {
   --tw-text-opacity: 1;
   color: rgb(163 163 163 / var(--tw-text-opacity));
+}
+.text-neutral-800 {
+  --tw-text-opacity: 1;
+  color: rgb(38 38 38 / var(--tw-text-opacity));
+}
+.text-zinc-800 {
+  --tw-text-opacity: 1;
+  color: rgb(39 39 42 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
