@@ -29,6 +29,7 @@ Route::get('/',[AuthController::class, 'landing_page_fe']);
 Route::get('/search', [AuthController::class, 'search_fe']);
 Route::post('/contact-us', [ContactController::class, 'contact_us']);
 Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
+Route::get('/beranda', [AuthController::class, 'beranda']);
 
 
 

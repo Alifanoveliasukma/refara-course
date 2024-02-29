@@ -22,6 +22,11 @@ use function PHPUnit\Framework\returnValueMap;
 class AuthController extends Controller
 {
     //frontend
+
+    public function beranda()
+    {
+        return view('frontend.dashboard.beranda');
+    }
     public function landing_page_fe()
     {
 
