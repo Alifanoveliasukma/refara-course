@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FrontendContorller;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
@@ -25,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test', [TailwindController::class, 'test']);
 ROute::get('/login-peserta', [AuthController::class, 'login_page']);
 Route::get('/',[AuthController::class, 'landing_page_fe']);
+Route::get('/search', [AuthController::class, 'search_fe']);
+Route::post('/contact-us', [ContactController::class, 'contact_us']);
+
+
 // panel
 Route::middleware(['guest:user'])->group(function () {
     Route::get('/panel', [AuthController::class, 'login_panel'])->name('loginadmin');
