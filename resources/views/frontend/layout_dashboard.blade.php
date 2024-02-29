@@ -31,9 +31,9 @@
         <div class="w-[1366px] h-[100px] relative bg-white shadow">   
           <a class="left-[167px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" href="" >Beranda</a>
           <a class="left-[262px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" >Pembelajaran saya</a>     
-            <div class="left-[523px] top-[30.50px] absolute justify-center items-center gap-9 inline-flex">
+            <div class="pl-10 pr-[7px] py-1 left-[398px] top-[16px] absolute  rounded-[30px]  justify-end items-center gap-[308px] inline-flex">
                 <form action="/search" method="GET">
-                    <div class="left-[383px] top-[182px] absolute justify-center items-center gap-[11px] inline-flex">
+                    <div class="w-full h-full pl-[37.09px] pr-[100px] bg-whit py-1 rounded-[30px]  justify-center items-center  inline-flex">
                         <div class="pl-[33px] pr-[167px] py-2.5 bg-white rounded-[10px] border border-black border-opacity-40 justify-start items-center gap-[15.51px] flex">
                             <input class=" w-[352.83px]  text-zinc-600 text-xl font-normal font-['Roboto']" type="text" name="search" placeholder="Search Course.." value="{{ old('search') }}"></input>                </div>
                         <div class="pl-[22px] pr-5 py-2.5 rounded-[10px] border-2 border-white justify-center items-center flex">
@@ -62,7 +62,7 @@
                     @endif
                 </div>
             </div>
-            <img class="w-[153px] h-[50px] left-[155px] top-[14px] absolute" src="{{ asset ('assets/refaraLogo.png') }}" />
+            <a href="/"><img class="w-[153px] h-[50px] left-[155px] top-[14px] absolute" src="{{ asset ('assets/refaraLogo.png') }}" /></a>
         </div>
     @endif
     @yield('content')
