@@ -43,10 +43,10 @@
     <div>
         <div class="left-[166px] top-[344px] absolute justify-start items-start gap-8 inline-flex">
             @foreach ($kursus as $item )
-            <a class="w-[323px] h-[405px] relative bg-white rounded-[30px] shadow" href="/detail-kursus/{{$item->id}}">
+            <a class="w-[323px] h-[405px] relative bg-white rounded-[30px] shadow" href="/detail-kursus-fe/{{$item->id}}">
                 <img class="w-[310px] h-52 left-[6px] top-[7px] absolute rounded-[25px]" src="{{ asset('storage/' .$item->image ) }}" />
                 <td><div class="left-[23px] top-[259px] absolute text-slate-950 text-[25px] font-semibold font-['Roboto'] ">{{$item->nama_kursus}}</div></td>
-                <div class="left-[23px] top-[353px] absolute text-slate-950 text-[25px] font-semibold font-['Roboto']">{{ $item->harga_kursus }}</div>
+                <div class="left-[23px] top-[353px] absolute text-slate-950 text-[25px] font-semibold font-['Roboto']">Rp. {{ $item->harga_kursus }}</div>
                 <div class="left-[24px] top-[301px] absolute justify-start items-start gap-2 inline-flex">
                     <div class="justify-start items-end gap-[1.38px] flex">
                         <div class="w-[5.54px] h-[9px] bg-amber-500 rounded-[13.85px]"></div>
