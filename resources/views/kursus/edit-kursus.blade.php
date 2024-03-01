@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container mt-5">
+    <h2>Edit Kursus</h2>
     <form action="/panel/kursus/proses-edit/{{$kursus->id}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -39,6 +40,10 @@
         <div class="mb-3">
             <label for="durasi_kursus" class="form-label">Durasi Kursus:</label>
             <input type="text" class="form-control" id="durasi_kursus" name="durasi_kursus" required value="{{ $kursus->durasi_kursus }}">
+        </div>
+        <div class="mb-3">
+            <label for="akses" class="form-label">Masa Berlaku:</label>
+            <input type="text" class="form-control" id="akses" name="akses" required value="{{ $kursus->akses }}">
         </div>
         <div class="mb-3">
             <label for="harga_kursus" class="form-label">Harga Kursus:</label>

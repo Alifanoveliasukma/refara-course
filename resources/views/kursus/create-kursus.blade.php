@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <form action="/panel/kursus/proses-create" method="POST" enctype="multipart/form-data">
         @csrf
-
+<h2>Tambah Kursus</h2>
         <div class="mb-3">
             <label for="nama_kursus" class="form-label">Nama Kursus:</label>
             <input type="text" class="form-control" id="nama_kursus" name="nama_kursus" required>
@@ -48,6 +48,13 @@
             <label for="durasi_kursus" class="form-label">Durasi Kursus:</label>
             <input type="text" class="form-control" id="durasi_kursus" name="durasi_kursus" required>
             @error('durasi_kursus')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="akses" class="form-label">Masa Berlaku:</label>
+            <input type="text" class="form-control" id="akses" name="akses" required>
+            @error('akses')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>

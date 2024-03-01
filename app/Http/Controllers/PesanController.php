@@ -242,7 +242,7 @@ class PesanController extends Controller
 
         // $kursus = $pesananDetails->kursus;
         // $namaKursus = $kursus->nama_kursus;
-        
+        // dd($pesanan);
 
         return view('pesan.checkout', compact('pesanan', 'pesanan_info'));
     }

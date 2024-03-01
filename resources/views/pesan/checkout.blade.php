@@ -2,6 +2,10 @@
 @section('content')
 <div class="container">
     <h2>Check out</h2>
+    @if ($pesanan->isEmpty())
+        <p>Belum ada pesanan.</p>
+        <a href="/" class="btn btn-primary">Lanjut cari kursus</a>
+    @else
     <p>Tanggal Pesan : {{ $pesanan_info->tanggal }}</p>
     <a href="/" class="btn btn-primary">Lanjut cari kursus</a>
     <table class="table">
@@ -48,5 +52,6 @@
             </tr>
         </tbody>
     </table>
+    @endif
 </div>
 @endsection

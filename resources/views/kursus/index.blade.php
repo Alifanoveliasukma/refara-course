@@ -133,6 +133,8 @@
                 <tbody>
                     @foreach ($pesanan as $item)
                     <tr>
+                        <td><strong>Tanggal : </strong></td>
+                        <td>{{ $item->pesanan->tanggal }}</td>
                         <td><strong>Nama:</strong></td>
                         <td>{{ $item->peserta->nama }}</td>
                         <td><strong>Kursus:</strong></td>

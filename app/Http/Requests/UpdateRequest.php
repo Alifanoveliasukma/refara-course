@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             'deskripsi_kursus' => 'required|string',
             'durasi_kursus' => 'nullable|string|max:255',
             'level' => 'required|string',
+            'aksese' => 'required|string',
             'harga_kursus' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category_id' => 'required|exists:App\Models\Category,id',
