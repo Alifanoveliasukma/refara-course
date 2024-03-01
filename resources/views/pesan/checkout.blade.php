@@ -24,7 +24,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" >delete</button>
-                </form>
+                </form> 
             </td>
         </tr>
         @endforeach
