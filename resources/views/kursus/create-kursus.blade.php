@@ -1,73 +1,73 @@
 @extends('layout')
-@section('content')
 
-<form action="/panel/kursus/proses-create" method="POST" enctype="multipart/form-data" >
-    @csrf
-    
-    <div>
-        <label for="nama_kursus">Nama Kursus:</label>
-        <input type="text" id="nama_kursus" name="nama_kursus" required>
-        @if ($errors->has('nama_kursus'))
-            <span class="text-red-500">{{ $errors->first('nama_kursus') }}</span>
-        @endif
-    </div>
-    <div>
-        <label for="nama_pembuat">Nama Pembuat:</label>
-        <input type="text" id="nama_pembuat" name="nama_pembuat" required>
-        @if ($errors->has('nama_pembuat'))
-            <span class="text-red-500">{{ $errors->first('nama_pembuat') }}</span>
-        @endif
-    </div>
-    <div class="mb-6 ">
-        <label class="block">
-            <span class="text-gray-700">Select Category</span>
-            <select name="category_id" class="block w-full mt-1 rounded-md">
-                @foreach ($category as $category)
-                <option value="{{$category->id}}">{{$category->nama_category}}</option>
+@section('content')
+<div class="container mt-5">
+    <form action="/panel/kursus/proses-create" method="POST" enctype="multipart/form-data">
+        @csrf
+
+        <div class="mb-3">
+            <label for="nama_kursus" class="form-label">Nama Kursus:</label>
+            <input type="text" class="form-control" id="nama_kursus" name="nama_kursus" required>
+            @error('nama_kursus')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="nama_pembuat" class="form-label">Nama Pembuat:</label>
+            <input type="text" class="form-control" id="nama_pembuat" name="nama_pembuat" required>
+            @error('nama_pembuat')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Select Category:</label>
+            <select name="category_id" class="form-select" aria-label="Select Category">
+                @foreach ($category as $cat)
+                    <option value="{{ $cat->id }}">{{ $cat->nama_category }}</option>
                 @endforeach
             </select>
-        </label>
-        @error('category_id')
-        <div class="text-sm text-red-600">{{ $message }}</div>
-        @enderror
-    </div>
-    <div>
-        <label for="deskripsi_kursus">Deskripsi Kursus:</label>
-        <textarea id="deskripsi_kursus" name="deskripsi_kursus" required></textarea>
-        @if ($errors->has('deskripsi_kursus'))
-            <span class="text-red-500">{{ $errors->first('deskripsi_kursus') }}</span>
-        @endif
-    </div>
-    <div>
-        <label for="nama_kursus">Level Kursus:</label>
-        <input type="text" id="level" name="level" required>
-        @if ($errors->has('level'))
-            <span class="text-red-500">{{ $errors->first('level') }}</span>
-        @endif
-    </div>
-    <div>
-        <label for="durasi_kursus">Durasi Kursus:</label>
-        <input type="text" id="durasi_kursus" name="durasi_kursus" required>
-        @if ($errors->has('durasi_kursus'))
-            <span class="text-red-500">{{ $errors->first('durasi_kursus') }}</span>
-        @endif
-    </div>
-    <div>
-        <label for="harga_kursus">Harga Kursus:</label>
-        <input type="number" id="harga_kursus" name="harga_kursus" required>
-        @if ($errors->has('harga_kursus'))
-            <span class="text-red-500">{{ $errors->first('harga_kursus') }}</span>
-        @endif
-    </div>
-    <div class="mb-3">
-        <label for="formFile" class="form-label">Image</label>
-        <input class="form-control" type="file" name="image" id="formFile">
-        @if ($errors->has('image'))
-            <span class="text-red-500">{{ $errors->first('image') }}</span>
-        @endif
-    </div>
-      
-        <button type="submit">Tambah Kursus</button>
-    </div>
-</form>
+            @error('category_id')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="deskripsi_kursus" class="form-label">Deskripsi Kursus:</label>
+            <textarea class="form-control" id="deskripsi_kursus" name="deskripsi_kursus" required></textarea>
+            @error('deskripsi_kursus')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="level" class="form-label">Level Kursus:</label>
+            <input type="text" class="form-control" id="level" name="level" required>
+            @error('level')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="durasi_kursus" class="form-label">Durasi Kursus:</label>
+            <input type="text" class="form-control" id="durasi_kursus" name="durasi_kursus" required>
+            @error('durasi_kursus')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="harga_kursus" class="form-label">Harga Kursus:</label>
+            <input type="number" class="form-control" id="harga_kursus" name="harga_kursus" required>
+            @error('harga_kursus')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Image:</label>
+            <input class="form-control" type="file" name="image" id="formFile">
+            @error('image')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tambah Kursus</button>
+        <a href="/panel/data" class="btn btn-secondary">Kembali</a>
+    </form>
+</div>
 @endsection

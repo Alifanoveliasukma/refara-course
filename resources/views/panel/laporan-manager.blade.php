@@ -1,15 +1,26 @@
 @extends('layout')
+
 @section('content')
+<div class="container mt-5">
     <h2>Laporan dari manager</h2>
 
-    @foreach($laporan as $row)
-        <td><strong>ID Pembeli:</strong></td>
-        <td>{{ $row->peserta_id }}</td>
-        <td><strong>ID kursus:</strong></td>
-        <td>{{ $row->kursus_id }}</td>
-        <td><strong>Total Harga:</strong></td>
-        <td>{{ $row->pesananDetail->jumlah_harga }}</td>
-        <br>
-
-    @endforeach
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ID Pembeli</th>
+                <th scope="col">ID Kursus</th>
+                <th scope="col">Total Harga</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($laporan as $row)
+                <tr>
+                    <td>{{ $row->peserta->nama }}</td>
+                    <td>{{ $row->kursus->nama_kursus }}</td>
+                    <td>Rp. {{ number_format($row->pesananDetail->jumlah_harga) }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection
