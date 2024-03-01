@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Data;
 use App\Models\Kursus;
 use App\Models\Pesanan;
-use App\Models\PesananDetail;
 use App\Models\Peserta;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\PesananDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PesanController extends Controller
 {
@@ -111,6 +112,107 @@ class PesanController extends Controller
             }
         }
         return view('kursus.detail', compact('kursus'));
+    }
+
+    public function detail_kursus_fe(Request $request, $id)
+    {
+    $kursus = Kursus::all();
+    $list_category = Category::all();
+        // Mendapatkan ID pengguna yang sedang login
+    $peserta_id = Auth::id();
+    $user =  Auth::user()->id;
+    // Mengambil kursus yang diklik oleh pengguna
+    $kursus = Kursus::where('id', $id)->first();
+        // dd($kursus->id);
+    // $pesananExists = Pesanan::where('kursus_id', $kursus->id)->where('id_peserta', $peserta_id)->first();
+    // dd($pesananExists);
+    
+    $pesananExists = PesananDetail::where('kursus_id', $kursus->id)->where('peserta_id', $peserta_id)->first();
+        // dd($pesananDetail);
+    
+    
+    
+    // dd($kursus);
+    // $pesananExists = Pesanan::whereHas('detail_pesanan', function ($query) use ($kursus) {
+    //     $query->where('kursus_id', $kursus);
+    // })->exists();
+    // dd($pesananExists);
+    // Memeriksa apakah kursus_id yang diklik oleh peserta yang sedang login ada di dalam Data
+    $isPurchased = Data::where('peserta_id', $peserta_id)
+        ->where('kursus_id', $kursus->id)
+        ->exists();
+        $user_id = Auth::id();
+        $list_peserta = Peserta::where('id', $user_id)->first();
+        $pesanan_id = $list_peserta->pesanan_id;
+        $status_cart = $list_peserta->status_cart;
+        $pesanan = Pesanan::where('id_peserta', $user)->where('status',0)->first();
+        // dd($pesanan->kursus_id);
+    
+        if ($status_cart == 0) {
+            if($pesanan_id == 1){
+                // dd('status cartnya 0 tapi pesanan idnya 1');
+                if ($isPurchased) {
+                    $data = "true";
+                    return view('frontend.kursus.detail', compact('data', 'kursus'));
+                    // dd('Kursus ini telah dibeli oleh peserta yang sedang login.');
+                } else {
+                        $data = "false_2";
+                        return view('frontend.kursus.detail', compact('data', 'kursus'));
+                        // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
+                }   
+                    $data = "notfound";
+                    return view('frontend.kursus.detail', compact('kursus', 'data'));
+
+            }
+            $data = "false_1_belum keranjang";
+            // dd('status cart nya 0 ');
+            return view('frontend.kursus.detail', compact('kursus', 'data'));
+            
+                
+        } else {
+            if($pesanan_id == 0){
+                if($pesananExists){
+                    // dd('ada di cart');
+                    if($pesananExists->status == 0){
+                        $data = "false_sudah_keranjang";
+                        return view('frontend.kursus.detail', compact('kursus', 'data'));
+                    }
+                    $data = "false_6";
+                    return view('frontend.kursus.detail', compact('kursus', 'data'));
+                }
+                // dd('ga ada di cart');
+                    $data = "false_5";
+                    return view('frontend.kursus.detail', compact('data', 'kursus'));
+                // dd('status cartnya 1 tapi pesanan_idnya 0');
+                
+            } else {
+                if ($isPurchased) {
+                        $data = "true";
+                        // dd('Kursus ini telah dibeli oleh peserta yang sedang login.');
+                        return view('frontend.kursus.detail', compact('data', 'kursus'));
+                        
+                } else {
+                    if($pesananExists == False){
+                        $data = "false_3";
+                        // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
+                        return view('frontend.kursus.detail', compact('data', 'kursus'));
+                    }elseif ($pesananExists){
+                        $data = "false_sudah_keranjang";
+                        return view('frontend.kursus.detail', compact('kursus', 'data'));
+                    } else{
+                        $data = "false_2";
+                        // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
+                        return view('frontend.kursus.detail', compact('data', 'kursus'));
+                    }
+                        
+                        
+                }
+                    $data = "notfound";
+                    return view('frontend.kursus.detail', compact('kursus', 'data'));
+                
+            }
+        }
+        return view('frontend.kursus.detail', compact('kursus'));
     }
 
     public function belajar_kursus($id)

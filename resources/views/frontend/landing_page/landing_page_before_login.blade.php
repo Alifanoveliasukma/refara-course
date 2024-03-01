@@ -43,10 +43,10 @@
     <div>
         <div class="left-[166px] top-[344px] absolute justify-start items-start gap-8 inline-flex">
             @foreach ($kursus as $item )
-            <a class="w-[323px] h-[405px] relative bg-white rounded-[30px] shadow" href="/detail-kursus/{{$item->id}}">
+            <a class="w-[323px] h-[405px] relative bg-white rounded-[30px] shadow" href="/detail-kursus-fe/{{$item->id}}">
                 <img class="w-[310px] h-52 left-[6px] top-[7px] absolute rounded-[25px]" src="{{ asset('storage/' .$item->image ) }}" />
                 <td><div class="left-[23px] top-[259px] absolute text-slate-950 text-[25px] font-semibold font-['Roboto'] ">{{$item->nama_kursus}}</div></td>
-                <div class="left-[23px] top-[353px] absolute text-slate-950 text-[25px] font-semibold font-['Roboto']">{{ $item->harga_kursus }}</div>
+                <div class="left-[23px] top-[353px] absolute text-slate-950 text-[25px] font-semibold font-['Roboto']">Rp. {{ $item->harga_kursus }}</div>
                 <div class="left-[24px] top-[301px] absolute justify-start items-start gap-2 inline-flex">
                     <div class="justify-start items-end gap-[1.38px] flex">
                         <div class="w-[5.54px] h-[9px] bg-amber-500 rounded-[13.85px]"></div>
@@ -76,7 +76,7 @@
                 </div>
             </div>
             
-        <form>
+        </form>
             
     </div>
 </div>
@@ -146,4 +146,33 @@
         </div>
     </div>
 </div>
+{{-- section 6 --}}
+
+<div class="w-[1366px] h-[686px] px-[177px] pt-[153px] pb-[55px] justify-center items-center inline-flex">
+    <div class="grow shrink basis-0 h-[478px] pl-[11px] pr-2.5 pt-2.5 pb-[9px] bg-white rounded-[50px] shadow justify-center items-start gap-6 inline-flex">
+        <div class="w-[456px] h-[459px] relative rounded-[40px] flex-col justify-start items-start inline-flex">
+            <div class="text-black text-[35px] font-bold font-['FONTSPRING DEMO - Greycliff CF'] leading-[41.65px]">Contact us</div>
+            <form action="/contact-us" method="post" class="w-full">
+                @csrf
+                <div class="w-[385px] h-[0px] border border-zinc-400 mt-8">
+                    <input type="text" id="nama" name="nama" class="w-[385px] " placeholder="Masukan Nama">
+                </div>
+                <div class="w-[385px] h-[0px] border border-zinc-400 mt-8">
+                    <input type="text" id="no_telepon" name="no_telepon" class="w-[385px] " placeholder="Masukan No Telepon">
+                </div>
+                <div class="w-[385px] h-[0px] border border-zinc-400 mt-8">
+                    <input type="email" id="email" name="email" class="w-[385px] " placeholder="Masukan Email">
+                </div>
+                <div class="w-[385px] h-[0px] border border-zinc-400 mt-8">
+                    <textarea id="message" name="message" class="w-[385px] " placeholder="Masukan Message"></textarea>
+                </div>
+                <div class="px-[50px] py-2.5 bg-orange-600 rounded-[10px] justify-center items-center gap-2.5 inline-flex mt-10">
+                    <button type="submit" class="text-white text-xl font-bold font-['Inter'] leading-normal">Send</button>
+                </div>
+            </form>
+        </div>
+        <img class="w-[511px] h-[459px] rounded-tl-[10px] rounded-tr-[40px] rounded-bl-[10px] rounded-br-[40px] shadow-inner" src="{{ asset('assets/Rectangle 15.png') }}" />
+    </div>
+</div>
+
 @endsection

@@ -22,12 +22,34 @@ use function PHPUnit\Framework\returnValueMap;
 class AuthController extends Controller
 {
     //frontend
+
+    public function beranda()
+    {
+        $list_category = Category::all();
+        return view('frontend.dashboard.beranda',  compact('list_category'));
+    }
     public function landing_page_fe()
     {
 
         $kursus = Kursus::all();
         $list_category = Category::all();
         return view('frontend.landing_page.landing_page_before_login', compact('kursus', 'list_category'));
+    }
+
+    public function search_fe(Request $request)
+    {
+    // menangkap data search
+    $list_category = Category::all();
+    $list_kursus = Kursus::all();
+    $search = $request->search;
+    
+        // mengambil data dari table pegawai sesuai pencarian data
+    $kursus = Kursus::where('nama_kursus','like',"%".$search."%")
+    ->paginate();
+    
+        // mengirim data pegawai ke view landing_page
+    return view('frontend.landing_page.landing_page_before_login', compact('kursus','list_kursus','list_category'));
+    
     }
     //dev
 
