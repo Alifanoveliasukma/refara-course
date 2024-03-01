@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 
 // Tailwind
 Route::get('/test', [TailwindController::class, 'test']);
-ROute::get('/login-peserta', [AuthController::class, 'login_page']);
 Route::get('/',[AuthController::class, 'landing_page_fe']);
 Route::get('/search', [AuthController::class, 'search_fe']);
 Route::post('/contact-us', [ContactController::class, 'contact_us']);
@@ -73,7 +72,10 @@ Route::middleware(['auth:user'])->group(function(){
     //peserta
 
     Route::middleware(['guest:peserta'])->group(function () {
-    Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
+    //frontend
+    ROute::get('/login-peserta', [AuthController::class, 'login_page']);
+    //backend
+    // Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
     Route::post('/proses-login',[AuthController::class, 'proseslogin']);
     Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
     Route::post('/proses-register', [AuthController::class, 'proses_register_peserta'])->name('register');
