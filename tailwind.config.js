@@ -15,7 +15,9 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      inter:['Inter']
+    },
   },
   plugins: [],
 }

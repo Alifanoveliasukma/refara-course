@@ -12,7 +12,7 @@
 <body>
     <script src="{{ asset('js/app.js') }}"></script>
     @if (Auth::guard('peserta')->guest())
-        <div class="w-[1366px] h-[78px] relative bg-white shadow">        
+        <div class="max-w-screen-xl relative bg-white shadow">        
             <div class="left-[523px] top-[30.50px] absolute justify-center items-center gap-9 inline-flex">
                 <a class="text-black text-[15px] font-normal font-['Roboto']" href="#">Home</a>
                 <a class="text-black text-[15px] font-normal font-['Roboto']" href="#">Courses</a>

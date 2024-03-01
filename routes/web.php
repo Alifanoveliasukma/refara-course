@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Tailwind
-Route::get('/test', [TailwindController::class, 'test']);
+Route::get('/cari', [TailwindController::class, 'cari']);
 
 ROute::get('/login-peserta', [AuthController::class, 'login_page']);
 Route::get('/',[AuthController::class, 'landing_page_fe']);
