@@ -36,21 +36,21 @@ class AuthController extends Controller
         return view('frontend.landing_page.landing_page_before_login', compact('kursus', 'list_category'));
     }
 
-    public function search_fe(Request $request)
-    {
-    // menangkap data search
-    $list_category = Category::all();
-    $list_kursus = Kursus::all();
-    $search = $request->search;
+    // public function search_fe(Request $request)
+    // {
+    // // menangkap data search
+    // $list_category = Category::all();
+    // $list_kursus = Kursus::all();
+    // $search = $request->search;
     
-        // mengambil data dari table pegawai sesuai pencarian data
-    $kursus = Kursus::where('nama_kursus','like',"%".$search."%")
-    ->paginate();
+    //     // mengambil data dari table pegawai sesuai pencarian data
+    // $kursus = Kursus::where('nama_kursus','like',"%".$search."%")
+    // ->paginate();
     
-        // mengirim data pegawai ke view landing_page
-    return view('frontend.landing_page.landing_page_before_login', compact('kursus','list_kursus','list_category'));
+    //     // mengirim data pegawai ke view landing_page
+    // return view('frontend.landing_page.landing_page_before_login', compact('kursus','list_kursus','list_category'));
     
-    }
+    // }
     //dev
 
     // peserta
@@ -101,6 +101,18 @@ class AuthController extends Controller
     }
 
 
+    public function fetching_kursus_fe($nama_category)
+    {
+        if(Category::where('nama_category', $nama_category)->exists())
+        {
+            $kategori = Category::where('nama_category', $nama_category)->first();
+            $kursus = Kursus::where('category_id', $kategori->id)->where('status',0)->get();
+            return view('frontend.kursus.display', compact('kursus', 'kategori'));
+        } else {
+            return redirect('/')->with('status', 'Kategori tidak ada');
+        }
+        
+    }
     public function fetching_kursus($nama_category)
     {
         if(Category::where('nama_category', $nama_category)->exists())
