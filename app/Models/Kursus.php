@@ -18,6 +18,7 @@ class Kursus extends Model
         'deskripsi_kursus', 
         'harga_kursus',
         'level',
+        'akses',
         'durasi_kursus',
         'category_id',
         'image',

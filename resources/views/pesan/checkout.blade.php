@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+
 <table>
     <thead>
         <h2>Check out</h2>
@@ -37,20 +38,12 @@
                 <form action="/stripe" method="POST">
                     <a href="/">lanjut cari kursus</a>
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    
-                    <input type="hidden" name="product_name" value="{{ $pesanan_info->nama_pesanan }}">
-                   
-                    <input type="hidden" name="quantity" value="1">
-                    
-                    <input type="hidden" name="price" value="{{ $pesanan_info->jumlah_harga}}">`
-                    
-                    
-                    <button type="submit" id="checkout-live-button">Pay with stripe</button>
-                </form>
-            </td>
-            
-        </tr>
-    </tbody>
-</table>
 
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    @endif
+</div>
 @endsection
