@@ -90,6 +90,7 @@ Route::middleware(['auth:peserta'])->group(function(){
     // Pesanan
     //front end pesanan 
     Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
+    ROute::get('/checkout-fe', [PesanController::class, 'checkout_kursus_fe']);
 
 
     //backend pesanan
