@@ -68,7 +68,7 @@ class AuthController extends Controller
     }
 
 
-    public function search(Request $request)
+    public function search_fe(Request $request)
     {
     // menangkap data search
     $list_category = Category::all();
@@ -83,6 +83,23 @@ class AuthController extends Controller
     return view('frontend.landing_page.landing_page_before_login', compact('kursus','list_kursus','list_category'));
     
     }
+
+    public function search(Request $request)
+    {
+    // menangkap data search
+    $list_category = Category::all();
+    $list_kursus = Kursus::all();
+    $search = $request->search;
+    
+        // mengambil data dari table pegawai sesuai pencarian data
+    $kursus = Kursus::where('nama_kursus','like',"%".$search."%")
+    ->paginate();
+    
+        // mengirim data pegawai ke view landing_page
+    return view('landing_page.landing_page', compact('kursus','list_kursus','list_category'));
+    
+    }
+
 
     public function fetching_kursus($nama_category)
     {
@@ -162,7 +179,7 @@ class AuthController extends Controller
         
         if ($pesanan->isNotEmpty()) {
             // Jika ada pesanan yang terkait dengan pengguna saat ini
-            $pesanan_peserta = Data::whereIn('peserta_id', $pesanan->pluck('id'))->get();
+            $pesanan_peserta = Data::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
             // $pesanan_peserta = PesananDetail::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
             // dd($pesanan_peserta);
             return view('peserta.dashboard', compact('pesanan_peserta', 'pesanan'));
