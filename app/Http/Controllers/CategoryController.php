@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
             if($create) {
                 // add flash for the success notification
-                session()->flash('notif.success', 'Post created successfully!');
+                
                 return redirect('/panel/data')->with('success', 'Kategori berhasil di update');
             }
 
@@ -75,8 +75,9 @@ class CategoryController extends Controller
     public function delete_category($id)
     {
         $category = Category::find($id);
+        dd($category);
         $category->delete();
-        return redirect('/panel/category/list-category')
+        return redirect('/panel/data')
                 ->withSuccess('Category Berhasil Di Delete!');
     }
 }

@@ -45,8 +45,8 @@ class KursusController extends Controller
 
             if($create) {
                 // add flash for the success notification
-                session()->flash('notif.success', 'Post created successfully!');
-                return redirect('/panel/data')->with('success', 'berhasil di update');
+                
+                return redirect('/panel/data')->with('success', 'Kursus berhasil di tambah');
             }
 
             return abort(500);
