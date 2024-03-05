@@ -36,7 +36,7 @@
     </div>
     </ul>
     @else
-    <p>Anda belum memesan kursus - kondisi sudah tambah cart</p>
+    <h2>Anda belum memesan kursus</h2>
     @endif
     @elseif(Auth::guard('peserta')->user()->pesanan_id == 1)
     <h2>Kursus yang telah kamu beli</h2>
@@ -48,7 +48,7 @@
         @endforeach
     </ul>
     @else
-    <p>Anda belum memesan kursus - kondisi belum tambah cart</p>
+    <h2>Anda belum memesan kursus</h2>
     @endif
 </div>
 @endsection

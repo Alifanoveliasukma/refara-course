@@ -56,7 +56,7 @@
                     </div>
                     <div>
                         <input class="w-[352.83px] h-[55.37px] pl-[37.09px] pr-10 bg-white rounded-[30px] justify-center items-start gap-[144.78px] inline-flex mt-4" 
-                        type="text" 
+                        type="password" 
                         name="password" 
                         id="password" 
                         placeholder="Masukkan password" />                        @error('password')
@@ -74,7 +74,7 @@
                     </div>
                     <div>
                         <input class="w-[352.83px] h-[55.37px] pl-[37.09px] pr-10 bg-white rounded-[30px] justify-center items-start gap-[144.78px] inline-flex mt-4" 
-                        type="text" 
+                        type="password" 
                         name="password_confirmation" 
                         id="password_confirmation" 
                         placeholder="Confirm Password" />                        @error('password_confirmation')

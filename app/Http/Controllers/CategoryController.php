@@ -36,7 +36,7 @@ class CategoryController extends Controller
             if($create) {
                 // add flash for the success notification
                 
-                return redirect('/panel/data')->with('success', 'Kategori berhasil di update');
+                return redirect('/panel/data')->with('success', 'Kategori berhasil di tambah');
             }
 
             return abort(500);

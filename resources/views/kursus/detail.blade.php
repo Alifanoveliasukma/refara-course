@@ -21,6 +21,10 @@
                     <textarea class="form-control" id="deskripsi_kursus" name="deskripsi_kursus" required>{{ $kursus->deskripsi_kursus }}</textarea>
                 </div>
                 <div class="mb-3">
+                    <label for="deskripsi_kursus" class="form-label">Durasi:</label>
+                    <input type="text" class="form-control" id="durasi_kursus" name="durasi_kursus" required value="{{ $kursus->durasi_kursus }}">
+                </div>
+                <div class="mb-3">
                     <label for="deskripsi_kursus" class="form-label">Masa Berlaku:</label>
                     <textarea class="form-control" id="deskripsi_kursus" name="deskripsi_kursus" required>{{ $kursus->akses }}</textarea>
                 </div>

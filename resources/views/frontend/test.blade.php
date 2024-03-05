@@ -49,7 +49,7 @@
 
                         if ($pesanan_utama) {
                             $notif = App\Models\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count();
-                            echo '<a href="/checkout"> <img  src="assets/cart.png" /><span> ' . $notif . '</span></a>';
+                            echo '<a href="/checkout-fe"> <img  src="assets/cart.png" /><span> ' . $notif . '</span></a>';
                         } else {
                             echo '<a href="/pesan/checkout"></a>';
                         }
