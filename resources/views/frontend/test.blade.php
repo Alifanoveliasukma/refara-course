@@ -20,7 +20,7 @@
                 <a class="text-black text-[15px] font-normal font-['Roboto']" href="#">Contact</a>
             </div>
             <div class="left-[1045px] top-[18px] absolute justify-center items-center gap-3.5 inline-flex">
-                <a class="text-neutral-700 text-lg font-bold font-['Roboto']" href="{{ route('login') }}">Login</a>
+                <a class="text-neutral-700 text-lg font-bold font-['Roboto']" href="/login-peserta">Login</a>
                 <div class="px-[14.43px] py-[10.82px] bg-orange-600 rounded-[21.64px] justify-center items-center gap-[7.21px] flex">
                     <a class="text-white text-lg font-bold font-['Roboto']" href="/register">Register</a>
                 </div>
