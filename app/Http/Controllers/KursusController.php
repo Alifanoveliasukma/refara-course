@@ -9,7 +9,9 @@ use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Data;
 use App\Models\Pesanan;
+use App\Models\PesananDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -118,19 +120,16 @@ class KursusController extends Controller
 
     public function non_aktifkan($id)
     {
-        $status_masa_aktif = 1;
-        try {
-            $data = [
-                'status_masa_aktif' => $status_masa_aktif,
-            ];
-            $simpan = DB::table('data_lengkap')->where('id', $id)->update($data);
-
-            if($simpan){
-                return redirect('/panel/data');
-            }
-        } catch (\Exception $e) {
-            return redirect('panel/data')->with('success', 'kursus di non aktif kan');
+        
+        $pesanan_data = Data::where('kursus_id', $id)->first();
+        $pesanan_data->delete();
+        $pesanan_detail = PesananDetail::where('kursus_id', $id)->first();
+        $pesanan_detail->delete();
+        if($pesanan_detail && $pesanan_data){
+            return redirect('/panel/data');
         }
+        return redirect('/panel/data');
+
 
     }
 

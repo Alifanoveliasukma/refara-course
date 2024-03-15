@@ -114,7 +114,7 @@ Route::middleware(['auth:peserta'])->group(function(){
     // landing page
 });
 
-Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+        Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 Route::get('/search_fe', [AuthController::class, 'search_fe']);
 Route::get('/search', [AuthController::class, 'search']);
 Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);

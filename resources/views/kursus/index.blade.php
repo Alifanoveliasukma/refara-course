@@ -143,7 +143,7 @@
                         <td>Rp. {{ number_format($item->pesanan->jumlah_harga) }}</td>
                         <td>
                             @if($item->status_masa_aktif == 0)
-                                <a href="/status-kursus/non-aktif/{{$item->id}}">
+                                <a href="/status-kursus/non-aktif/{{$item->kursus->id}}">
                                     <button type="button" class="btn btn-danger">Non aktifkan</button>
                                 </a>
                             @elseif($item->status_masa_aktif == 1)
