@@ -29,7 +29,6 @@ ROute::get('/login-peserta', [AuthController::class, 'login_page']);
 Route::get('/',[AuthController::class, 'landing_page_fe']);
 Route::get('/search', [AuthController::class, 'search_fe']);
 Route::post('/contact-us', [ContactController::class, 'contact_us']);
-Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
 Route::get('/beranda', [AuthController::class, 'beranda']);
 Route::get('/category-fe/{nama_category}', [AuthController::class, 'fetching_kursus_fe']);
 
@@ -87,9 +86,17 @@ Route::middleware(['auth:user'])->group(function(){
 
 Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/proses-logout-peserta',[AuthController::class, 'proseslogout']);
-    Route::get('/dashboard',[AuthController::class, 'index']);
+    // Route::get('/dashboard',[AuthController::class, 'index']);
 
     // Pesanan
+
+    //fe
+    // Route::get('/dashboard/kursus-fe/{id}', [PesanController::class, 'belajar_kursus_fe']);
+    Route::get('/dashboard-fe',[AuthController::class, 'index_fe']);
+
+    Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
+
+
     // Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
