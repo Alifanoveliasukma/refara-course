@@ -184,6 +184,25 @@ class AuthController extends Controller
         }
     }
 
+    public function index_fe()
+    {
+        $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->get();
+        $list_peserta = Peserta::where('id', Auth::user()->id)->first();
+        
+        if ($pesanan->isNotEmpty()) {
+            // Jika ada pesanan yang terkait dengan pengguna saat ini
+            $pesanan_peserta = Data::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
+            // $pesanan_peserta = PesananDetail::whereIn('pesanan_id', $pesanan->pluck('id'))->get();
+            // dd($pesanan_peserta);
+            return view('frontend.dashboard.index', compact('pesanan_peserta', 'pesanan'));
+        } else {
+            // Jika tidak ada pesanan yang terkait dengan pengguna saat ini
+            $data_lain = "Data lain yang ingin ditampilkan jika tidak ada pesanan terkait";
+            return view('frontend.dashboard.index', compact('data_lain'));
+        }
+        
+        
+    }
     public function index()
     {
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->get();

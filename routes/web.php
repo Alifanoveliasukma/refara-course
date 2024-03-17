@@ -90,16 +90,16 @@ Route::middleware(['auth:user'])->group(function(){
 
 Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/proses-logout-peserta',[AuthController::class, 'proseslogout']);
-    Route::get('/dashboard',[AuthController::class, 'index']);
+    // Route::get('/dashboard',[AuthController::class, 'index']);
 
     // Pesanan
-    Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
-    //front end pesanan 
+
+    //fe
+    // Route::get('/dashboard/kursus-fe/{id}', [PesanController::class, 'belajar_kursus_fe']);
+    Route::get('/dashboard-fe',[AuthController::class, 'index_fe']);
+
     Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
-    ROute::get('/checkout-fe', [PesanController::class, 'checkout_kursus_fe']);
 
-
-    //backend pesanan
     // Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);

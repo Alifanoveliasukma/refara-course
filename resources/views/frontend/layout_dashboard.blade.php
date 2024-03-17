@@ -30,7 +30,7 @@
     @else
         <div class="w-[1366px] h-[100px] relative bg-white shadow">   
           <a class="left-[167px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" href="/beranda" >Beranda</a>
-          <a class="left-[262px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" >Pembelajaran saya</a>     
+          <a class="left-[262px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" href="/dashboard-fe">Pembelajaran saya</a>     
             <div class="pl-10 pr-[7px] py-1 left-[398px] top-[16px] absolute  rounded-[30px]  justify-end items-center gap-[308px] inline-flex">
                 <form action="/search" method="GET">
                     <div class="w-full h-full pl-[37.09px] pr-[100px] bg-whit py-1 rounded-[30px]  justify-center items-center  inline-flex">
