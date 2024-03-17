@@ -27,7 +27,7 @@
                     <div class="card-body">
                     <h5 class="card-title">{{ $a->kursus->nama_kursus }}</h5>
                     <p class="card-text">{{ $a->kursus->deskripsi_kursus }}</p>
-                    <a href="#" class="btn btn-danger">Masa berlaku sudah habis</a>
+                    <a href="/detail-kursus/{{$a->kursus->id}}" class="btn btn-danger">Masa berlaku sudah habis</a>
                     </div>
                  @endif
             </div> 

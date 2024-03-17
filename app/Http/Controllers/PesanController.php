@@ -8,6 +8,7 @@ use App\Models\Kursus;
 use App\Models\Pesanan;
 use App\Models\Peserta;
 use App\Models\Category;
+use App\Models\History;
 use Illuminate\Http\Request;
 use App\Models\PesananDetail;
 use Illuminate\Support\Facades\DB;
@@ -399,7 +400,7 @@ class PesanController extends Controller
 
     public function riwayat_pesanan(){
         $peserta_id = Auth::id();
-        $history = Data::where('peserta_id', $peserta_id)->get();
+        $history = History::where('peserta_id', $peserta_id)->get();
         return view('pesan.history', compact('history'));
         // foreach ($history as $data) {
         //     // Mengakses relasi menggunakan relasi yang sudah didefinisikan di model

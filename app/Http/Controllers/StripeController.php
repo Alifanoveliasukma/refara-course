@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Data;
+use App\Models\History;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Pesanan;
@@ -77,7 +78,7 @@ class StripeController extends Controller
         $pesanan_details = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
         
 
-        // Simpan setiap objek ke dalam tabel lain
+        // Simpan setiap objek ke dalam tabel Data lengkap
         $pesanan_details->each(function ($pesanan_detail) 
         {
         $status_masa_aktif = 0;
@@ -89,6 +90,24 @@ class StripeController extends Controller
                 'pesanan_detail_id' => $pesanan_detail->id,
                 'status_masa_aktif' => $status_masa_aktif,
                 'status_owner' => $status_owner,
+                // ... tambahkan kolom lain sesuai kebutuhan
+            ]);
+        });
+
+        // simpan setiap objek ke dalam table history
+        $pesanan_details = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
+        
+
+        // Simpan setiap objek ke dalam tabel Data lengkap
+        $pesanan_details->each(function ($pesanan_detail) 
+        {
+        $status_masa_aktif = 0;
+            History::create([
+                'peserta_id' => $pesanan_detail->peserta_id,
+                'kursus_id' => $pesanan_detail->kursus_id,
+                'pesanan_id' => $pesanan_detail->pesanan_id,
+                'pesanan_detail_id' => $pesanan_detail->id,
+                'status_masa_aktif' => $status_masa_aktif,
                 // ... tambahkan kolom lain sesuai kebutuhan
             ]);
         });
