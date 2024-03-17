@@ -40,14 +40,14 @@
                 <td><strong>Rp. {{ number_format($pesanan_info->jumlah_harga) }}</strong></td>
                 <td>
                     <form action="/stripe" method="POST">
-                        
+
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="product_name" value="{{ $pesanan_info->nama_pesanan }}">
                         <input type="hidden" name="quantity" value="1">
                         <input type="hidden" name="price" value="{{$pesanan_info->jumlah_harga}}">
                         <button type="submit" class="btn btn-success">Pay with stripe</button>
                     </form>
-                    
+
                 </td>
             </tr>
         </tbody>

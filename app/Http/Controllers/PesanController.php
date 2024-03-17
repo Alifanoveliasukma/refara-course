@@ -8,6 +8,7 @@ use App\Models\Kursus;
 use App\Models\Pesanan;
 use App\Models\Peserta;
 use App\Models\Category;
+use App\Models\History;
 use Illuminate\Http\Request;
 use App\Models\PesananDetail;
 use Illuminate\Support\Facades\DB;
@@ -358,6 +359,29 @@ class PesanController extends Controller
         return redirect('/');
     }
 
+    public function checkout_kursus_fe()
+    {
+        $peserta_id = Auth::id();
+        // $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status',0)->first();
+        // $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        // $kursus = $pesanan_details->kursus_id;
+        // dd($kursus);
+        // dd($pesanan_details);
+        $pesanan_info = Pesanan::where('id_peserta', $peserta_id)->where('status', 0)->first();
+        // dd($pesanan_info->nama_pesanan);
+        $pesanan = PesananDetail::where('peserta_id', $peserta_id)->where('status', 0)->get();
+        // dd($pesanan);
+        // $pesanandetail = PesananDetail::where('pesanan_id', $pesanan)->get();
+        // dd($pesanandetail);
+
+
+        // $kursus = $pesananDetails->kursus;
+        // $namaKursus = $kursus->nama_kursus;
+        
+
+        return view('frontend.pesan.checkout', compact('pesanan', 'pesanan_info'));
+    }
+
     public function checkout_kursus()
     {
         $peserta_id = Auth::id();
@@ -408,7 +432,7 @@ class PesanController extends Controller
 
     public function riwayat_pesanan(){
         $peserta_id = Auth::id();
-        $history = Data::where('peserta_id', $peserta_id)->get();
+        $history = History::where('peserta_id', $peserta_id)->get();
         return view('pesan.history', compact('history'));
         // foreach ($history as $data) {
         //     // Mengakses relasi menggunakan relasi yang sudah didefinisikan di model

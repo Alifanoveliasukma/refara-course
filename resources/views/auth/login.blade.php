@@ -74,6 +74,7 @@
             <input type="submit" value="Login">
         </div>
     </form>
+    <p>Belum punya akun? <a href="/register">Register disini</a></p>
 </div>
 
 </body>

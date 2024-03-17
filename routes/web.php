@@ -25,8 +25,9 @@ use Illuminate\Support\Facades\Route;
 // Tailwind
 Route::get('/test', [TailwindController::class, 'test']);
 
-ROute::get('/login-peserta', [AuthController::class, 'login_page']);
+
 Route::get('/',[AuthController::class, 'landing_page_fe']);
+
 Route::get('/search', [AuthController::class, 'search_fe']);
 Route::post('/contact-us', [ContactController::class, 'contact_us']);
 Route::get('/beranda', [AuthController::class, 'beranda']);
@@ -76,7 +77,10 @@ Route::middleware(['auth:user'])->group(function(){
     //peserta
 
     Route::middleware(['guest:peserta'])->group(function () {
-    Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
+    //frontend
+    ROute::get('/login-peserta', [AuthController::class, 'login_page']);
+    //backend
+    // Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
     Route::post('/proses-login',[AuthController::class, 'proseslogin']);
     Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
     Route::post('/proses-register', [AuthController::class, 'proses_register_peserta'])->name('register');
@@ -95,7 +99,6 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/dashboard-fe',[AuthController::class, 'index_fe']);
 
     Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
-
 
     // Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
@@ -116,7 +119,9 @@ Route::middleware(['auth:peserta'])->group(function(){
     // landing page
 });
 
+
 // Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+
 Route::get('/search_fe', [AuthController::class, 'search_fe']);
 Route::get('/search', [AuthController::class, 'search']);
 Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);
