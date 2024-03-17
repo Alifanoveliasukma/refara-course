@@ -29,7 +29,7 @@
     <div class="left-[165px] top-[149px] absolute text-zinc-800 text-[25px] font-normal font-['Inter']">Kategori Kursus</div>
     <div class="w-[1036px] left-[165px] top-[203px] absolute justify-start items-start gap-[52px] inline-flex" >
         @foreach ($list_category as $item )
-        <a class="w-[220px] h-80 relative bg-white rounded-[30px] shadow border border-stone-300" href="/category/{{$item->nama_category}}">
+        <a class="w-[220px] h-80 relative bg-white rounded-[30px] shadow border border-stone-300" href="/category-fe/{{$item->nama_category}}">
             <img class="w-[206px] h-[154px] left-[7px] top-[6px] absolute rounded-[25px]" src="{{ Storage::url($item->image) }}" />
             <div class="left-[17px] top-[216px] absolute text-neutral-800 text-[15px] font-semibold font-['Inter']">{{$item->nama_category}}</div>
         </a>
