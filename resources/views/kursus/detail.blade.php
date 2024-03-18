@@ -60,6 +60,8 @@
                             <button type="submit" class="btn btn-success">Masukkan ke Keranjang</button>
                         @elseif($data == 'false_8')
                             <button type="submit" class="btn btn-success">Masukkan ke Keranjang</button>
+                        @elseif($data == 'false_9')
+                            <button type="submit" class="btn btn-success">Masukkan ke Keranjang</button>
                         @elseif($data == 'false_sudah_keranjang')
                             <label class="btn btn-warning">Sudah Masuk Keranjang</label>
                         @elseif($data == 'notfound')

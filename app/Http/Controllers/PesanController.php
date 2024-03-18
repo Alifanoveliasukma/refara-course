@@ -27,7 +27,10 @@ class PesanController extends Controller
     // $pesananExists = Pesanan::where('kursus_id', $kursus->id)->where('id_peserta', $peserta_id)->first();
     // dd($pesananExists);
     
-    $pesananExists = PesananDetail::where('kursus_id', $kursus->id)->where('peserta_id', $peserta_id)->first();
+    $pesananExists = PesananDetail::where('kursus_id', $kursus->id)
+    ->where('peserta_id', $peserta_id)
+    ->withTrashed()
+    ->first();
         // dd($pesananDetail);
     
     
@@ -92,11 +95,14 @@ class PesanController extends Controller
                         return view('kursus.detail', compact('data', 'kursus'));
                         
                 } else {
-                    if($pesananExists == False){
+                    if(!$pesananExists){
                         $data = "false_3";
-                        // dd('Kursus ini belum dibeli oleh peserta yang sedang login.');
                         return view('kursus.detail', compact('data', 'kursus'));
+                    }elseif ($pesananExists->trashed()){
+                        $data = "false_9";
+                        return view('kursus.detail', compact('kursus', 'data'));
                     }elseif ($pesananExists){
+                        dd('tes');
                         $data = "false_sudah_keranjang";
                         return view('kursus.detail', compact('kursus', 'data'));
                     } else{
@@ -296,6 +302,28 @@ class PesanController extends Controller
             $pesanan_detail->update();
 
         }
+        $cek_history = History::where('kursus_id', $kursus->id)->where('pesanan_id', $pesanan_baru->id)->first();
+        if(empty($cek_history))
+        {
+            $pesanan_detail = new History;
+            $pesanan_detail->kursus_id = $kursus->id;
+            $pesanan_detail->peserta_id = Auth::user()->id;
+            $pesanan_detail->status = 0;
+            $pesanan_detail->tanggal = $tanggal;
+            $pesanan_detail->pesanan_id = $pesanan_baru->id;
+            $pesanan_detail->jumlah = $request->jumlah_pesan;
+            $pesanan_detail->jumlah_harga = $kursus->harga_kursus*$request->jumlah_pesan;
+            $pesanan_detail->save();
+        }else{
+            $pesanan_detail = History::where('kursus_id', $kursus->id)->where('pesanan_id', $pesanan_baru->id)->first();
+            $pesanan_detail->jumlah = $pesanan_detail->jumlah+$request->jumlah_pesan;
+
+            //harga sekarang
+            $harga_pesanan_detail_baru = $kursus->harga_kursus*$request->jumlah_pesan;
+            $pesanan_detail->jumlah_harga = $pesanan_detail->jumlah_harga+$harga_pesanan_detail_baru;
+            $pesanan_detail->update();
+
+        }
 
         //jumlah total
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->where('status', 0)->first();
@@ -404,7 +432,7 @@ class PesanController extends Controller
         return view('pesan.history', compact('history'));
         // foreach ($history as $data) {
         //     // Mengakses relasi menggunakan relasi yang sudah didefinisikan di model
-        //     $relasi = $data->kursus->nama_kursus;
+        //     $relasi = $data->pesanandetail->jumlah_harga;
         //     dd($relasi); // Ganti 'nama_relasi' dengan nama relasi yang sesuai
         //     // Lakukan sesuatu dengan relasi
         // }

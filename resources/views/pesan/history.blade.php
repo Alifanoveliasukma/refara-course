@@ -23,7 +23,7 @@
                 <td>{{ $data->peserta->nama }}</td>
                 <td>{{ $data->kursus->nama_kursus }}</td>
                 {{-- <td>{{ $data->pesanan->id }}</td> --}}
-                <td>Rp. {{ number_format($data->pesananDetail->jumlah_harga) }}</td>
+                <td>Rp. {{ number_format($data->jumlah_harga) }}</td>
                 <!-- Ganti 'field1', 'field2', dst. dengan nama kolom yang sesuai -->
                 <!-- Jika ada relasi, Anda juga bisa mengakses properti dari relasi -->
                 <!-- Contoh: $data->relasi->nama_field -->

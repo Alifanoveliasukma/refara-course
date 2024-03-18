@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('history', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('peserta_id')->nullable();
             $table->unsignedBigInteger('kursus_id')->nullable();
+            $table->unsignedBigInteger('peserta_id')->nullable();
             $table->unsignedBigInteger('pesanan_id')->nullable();
-            $table->unsignedBigInteger('pesanan_detail_id')->nullable();
-            $table->unsignedBigInteger('status_masa_aktif')->nullable();
+            $table->string('status')->nullable();
+            $table->integer('jumlah_harga');
+            $table->integer('jumlah');
+            $table->softDeletes();
+            $table->date('tanggal');
 
             $table->foreign('kursus_id')->references('id')->on('content_course');
-            $table->foreign('pesanan_id')->references('id')->on('pesanan');
             $table->foreign('peserta_id')->references('id')->on('list_peserta');
-            $table->foreign('pesanan_detail_id')->references('id')->on('pesanan_detail');
+            $table->foreign('pesanan_id')->references('id')->on('pesanan');
             $table->timestamps();
         });
     }

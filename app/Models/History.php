@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class History extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $table = 'history';
 
     protected $fillable = [
         'peserta_id',
         'kursus_id',
         'pesanan_id',
-        'pesanan_detail_id',
+        'status',
+        'jumlah',
+        'jumlah_harga',
         'status_masa_aktif',
     ];
 

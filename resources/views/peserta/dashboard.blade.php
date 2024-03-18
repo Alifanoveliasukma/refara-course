@@ -7,7 +7,7 @@
     </div>
     @endif
 
-    @if(Auth::guard('peserta')->user()->status_cart == '1')
+    @if(Auth::guard('peserta')->user()->status_cart == 1)
     @if(Auth::guard('peserta')->user()->pesanan_id == 1)
     <h2>Kursus yang telah kamu beli</h2>
     <ul class="list-group">

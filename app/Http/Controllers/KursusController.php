@@ -66,19 +66,21 @@ class KursusController extends Controller
     {
         $post = Kursus::findOrFail($id);
         $validated = $request->validated();
-
+        dd('error ini ');
         if ($request->hasFile('image')) {
             // delete image
             Storage::disk('public')->delete($post->image);
 
             $filePath = Storage::disk('public')->put('images/posts/featured-images', request()->file('image'), 'public');
             $validated['image'] = $filePath;
+            dd('error ini ');
         }
         $update = $post->update($validated);
         
         if($update) {
             session()->flash('notif.success', 'kursus updated successfully!');
             return redirect('/panel/data');
+            dd('error ini ');
         }
 
         return abort(500);
@@ -120,15 +122,10 @@ class KursusController extends Controller
 
     public function non_aktifkan($id)
     {
-        
-        $pesanan_data = Data::where('kursus_id', $id)->first();
-        $pesanan_data->delete();
-        $pesanan_detail = PesananDetail::where('kursus_id', $id)->first();
-        $pesanan_detail->delete();
-        if($pesanan_detail && $pesanan_data){
-            return redirect('/panel/data');
-        }
-        return redirect('/panel/data');
+        $pesananDetail = Data::findOrFail($id);
+        $pesananDetail->delete();
+
+        return redirect('/panel/data')->with('success', 'Pesanan detail berhasil dihapus.');
 
 
     }

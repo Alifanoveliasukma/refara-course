@@ -140,10 +140,10 @@
                         <td><strong>Kursus:</strong></td>
                         <td>{{ $item->kursus->nama_kursus }}</td>
                         <td><strong>Total Harga:</strong></td>
-                        <td>Rp. {{ number_format($item->pesanan->jumlah_harga) }}</td>
+                        <td>Rp. {{ number_format($item->pesanandetail->jumlah_harga) }}</td>
                         <td>
                             @if($item->status_masa_aktif == 0)
-                                <a href="/status-kursus/non-aktif/{{$item->kursus->id}}">
+                                <a href="/status-kursus/non-aktif/{{$item->id}}">
                                     <button type="button" class="btn btn-danger">Non aktifkan</button>
                                 </a>
                             @elseif($item->status_masa_aktif == 1)
