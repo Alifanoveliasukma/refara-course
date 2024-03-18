@@ -30,7 +30,7 @@
     @else
         <div class="w-[1366px] h-[100px] relative bg-white shadow">   
           <a class="left-[167px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" href="/beranda" >Beranda</a>
-          <a class="left-[262px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" >Pembelajaran saya</a>     
+          <a class="left-[262px] top-[79px] absolute text-black text-xs font-light font-['Roboto']" href="/dashboard-fe " >Pembelajaran saya</a>     
             <div class="left-[523px] top-[30.50px] absolute justify-center items-center gap-9 inline-flex">
                 <a class="text-black text-[15px] font-normal font-['Roboto']" href="#">Home</a>
                 <a class="text-black text-[15px] font-normal font-['Roboto']" href="#">Courses</a>

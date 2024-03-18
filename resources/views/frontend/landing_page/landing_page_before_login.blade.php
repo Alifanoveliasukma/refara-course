@@ -1,7 +1,7 @@
 @extends('frontend.test')
 @section('content')
 {{-- section 1 --}}
-<div class="w-[1366px] h-[790px] relative bg-gradient-to-r from-orange-100 to-orange-300 w-screen">
+<div class="w-full h-[790px] relative bg-gradient-to-r from-orange-100 to-orange-300 w-screen">
     <img class="w-[563px] h-[682px] left-[764px] top-[75px] absolute" src="{{ asset ('img/orang-landingpage.png') }}" />
     <div class="h-[272px] left-[164px] top-[222px] absolute flex-col justify-center items-start inline-flex">
         <div class="w-[591px] h-[173px] text-slate-900 text-[65px] font-black font-['Roboto'] tracking-wide">Kursus Bekualitas <br/>Untuk Karir Terbaik</div>

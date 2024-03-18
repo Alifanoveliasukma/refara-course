@@ -255,6 +255,38 @@ class PesanController extends Controller
         return view('peserta.belajar', compact('data'));
     }
 
+    public function belajar_kursus_fe($id)
+    {
+        $peserta_id = Auth::id();
+        $kursus = Kursus::where('id', $id)->first();
+        // dd($kursus->id);
+        // Mengambil data dari tabel Data dengan kondisi peserta_id sesuai dengan pengguna yang sedang login
+        $data = Data::where('peserta_id', $peserta_id)->first();
+        // dd($data->kursus_id);
+        // $data = Data::where('kursus_id', $content->id)->first();
+        // $ceksama = Data::where('peserta_id', $peserta_id)
+        // ->where('kursus_id', $kursus->id)
+        // ->exists();
+
+        // if ($ceksama) {
+        //     $kursus_id = $ceksama->kursus_id;
+        //     // Sekarang $kursus_id berisi nilai dari kolom kursus_id pada model Data
+        //     dd($kursus_id);
+        // }
+        $ceksama = Data::where('peserta_id', $peserta_id)
+        ->where('kursus_id', $kursus->id)
+        ->first();
+
+        if ($ceksama) {
+            return view('frontend.dashboard.course', compact('data', 'ceksama'));
+            // dd($ceksama->kursus->nama_kursus);
+            // Sekarang $kursus_nama berisi nilai dari kolom nama_kursus pada model Kursus yang terkait
+            // dd($kursus_nama);
+        }
+
+        return view('frontend.dashboard.course', compact('data'));
+    }
+
     public function pesan(Request $request, $id)
     {
 
