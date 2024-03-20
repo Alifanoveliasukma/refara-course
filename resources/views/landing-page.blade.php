@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="{{ route('login') }}">Login Peserta</a>
+                            <a class="nav-link text-dark" href="/login">Login Peserta</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/register">Register</a>

@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test', [TailwindController::class, 'test']);
 
 
-Route::get('/',[AuthController::class, 'landing_page_fe']);
+// Route::get('/',[AuthController::class, 'landing_page_fe']);
 
 Route::get('/search', [AuthController::class, 'search_fe']);
 Route::post('/contact-us', [ContactController::class, 'contact_us']);
@@ -78,9 +78,9 @@ Route::middleware(['auth:user'])->group(function(){
 
     Route::middleware(['guest:peserta'])->group(function () {
     //frontend
-    ROute::get('/login-peserta', [AuthController::class, 'login_page']);
+    // Route::get('/login-peserta', [AuthController::class, 'login_page']);
     //backend
-    // Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
+    Route::get('/login', [AuthController::class, 'halaman_login_peserta'])->name('login');
     Route::post('/proses-login',[AuthController::class, 'proseslogin']);
     Route::get('/register', [AuthController::class, 'registrasi'])->name('halaman_register');
     Route::post('/proses-register', [AuthController::class, 'proses_register_peserta'])->name('register');
@@ -90,7 +90,7 @@ Route::middleware(['auth:user'])->group(function(){
 
 Route::middleware(['auth:peserta'])->group(function(){
     Route::get('/proses-logout-peserta',[AuthController::class, 'proseslogout']);
-    // Route::get('/dashboard',[AuthController::class, 'index']);
+    Route::get('/dashboard',[AuthController::class, 'index']);
 
     // Pesanan
 
@@ -100,7 +100,7 @@ Route::middleware(['auth:peserta'])->group(function(){
 
     Route::get('/detail-kursus-fe/{id}', [PesanController::class, 'detail_kursus_fe']);
 
-    // Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
+    Route::get('/detail-kursus/{id}', [PesanController::class, 'detail_kursus']);
     Route::post('/pesan/{id}', [PesanController::class, 'pesan']);
     Route::get('/checkout', [PesanController::class, 'checkout_kursus']);
     Route::delete('/checkout-delete/{id}',[PesanController::class, 'delete']);
@@ -120,7 +120,7 @@ Route::middleware(['auth:peserta'])->group(function(){
 });
 
 
-// Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
+Route::get('/', [AuthController::class, 'landing_page'])->name('landing_page');
 
 Route::get('/search_fe', [AuthController::class, 'search_fe']);
 Route::get('/search', [AuthController::class, 'search']);
