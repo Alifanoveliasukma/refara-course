@@ -9,6 +9,7 @@
 
     @if(Auth::guard('peserta')->user()->status_cart == 1)
     @if(Auth::guard('peserta')->user()->pesanan_id == 1)
+    
     <h2>Kursus yang telah kamu beli</h2>
     <ul class="list-group">
         <div class="row">
@@ -21,6 +22,7 @@
                     <h5 class="card-title">{{ $a->kursus->nama_kursus }}</h5>
                     <p class="card-text">{{ $a->kursus->deskripsi_kursus }}</p>
                     <a href="/dashboard/kursus/{{$a->kursus->id}}" class="btn btn-primary">Belajar</a>
+                    <a href="/tes-fitur-1/{{$a->id}}" class="btn btn-danger">tes fitur 1</a>
                     </div>
                 @else
                     <img src="{{ asset('storage/' . $a->kursus->image) }}" class="card-img-top" style="max-height: 100px; object-fit: cover;" alt="...">

@@ -9,6 +9,7 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TailwindController;
+use App\Http\Controllers\TesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -114,6 +115,12 @@ Route::middleware(['auth:peserta'])->group(function(){
     Route::post('/stripe', [StripeController::class, 'stripe'])->name('session');
     Route::get('/success', [StripeController::class, 'success'])->name('success');
     Route::get('/cancel', [StripeController::class, 'cancel'])->name('cancel');
+
+    // tes fitur
+    Route::get('/tes-fitur-1/{id}', [TesController::class, 'tes_1'])->name('tes_1');
+    Route::get('/tes-fitur-2/{id}', [TesController::class, 'tes_2'])->name('tes_2');
+    Route::get('/countdown-finished', [TesController::class, 'countdownFinished']);
+    Route::post('/delete-session/{id}', [TesController::class, 'delete']);
     
     Route::get('/cek', [StripeController::class, 'cek']);
     // landing page
@@ -127,6 +134,9 @@ Route::get('/search', [AuthController::class, 'search']);
 Route::get('/category/{nama_category}', [AuthController::class, 'fetching_kursus']);
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 
+// Tes fitur
+
+Route::post('/alarm', [TesController::class, 'setAlarm']);
 
 
 

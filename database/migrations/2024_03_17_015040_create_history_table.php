@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->integer('jumlah_harga');
             $table->integer('jumlah');
+            $table->dateTime('expired');
             $table->softDeletes();
             $table->date('tanggal');
 

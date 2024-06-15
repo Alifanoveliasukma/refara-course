@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Pesanan;
 use App\Models\PesananDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -119,6 +120,17 @@ class StripeController extends Controller
             ->where('id', $id_peserta)
             ->update($data);
 
+        
+        $peserta_id = Auth::user()->id;
+        $akses = History::where('peserta_id', $peserta_id)->where('status', 0)->first();
+        $now = Carbon::now();
+        $targetMinute = date('Y-m-d H:i', strtotime($now . ' + ' . $akses->kursus->akses . ' minutes'));
+        $status = 1;
+
+        $expired = History::where('peserta_id', $peserta_id)->where('status', 0)->first();
+        $expired->status = $status;
+        $expired->expired = $targetMinute;
+        $expired->update();
         // simpan pada table payment
         $stripe = new \Stripe\StripeClient(config('stripe.stripe_sk'));
         $response = $stripe->checkout->sessions->create([
@@ -139,15 +151,14 @@ class StripeController extends Controller
         'cancel_url' => route('cancel'),
         ]);
         //dd($response);
-        if(isset($response->id) && $response->id != ''){
-            session()->put('product_name', $request->product_name);
-            session()->put('quantity', $request->quantity);
-            session()->put('price', $request->price);
-            return redirect($response->url);
-        } else{
-            return redirect()->route('cancel');
-        }
-
+            if(isset($response->id) && $response->id != ''){
+                session()->put('product_name', $request->product_name);
+                session()->put('quantity', $request->quantity);
+                session()->put('price', $request->price);
+                return redirect($response->url);
+            } else{
+                return redirect()->route('cancel');
+            }
         
         
     }
