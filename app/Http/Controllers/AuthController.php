@@ -9,8 +9,10 @@ use App\Models\Pesanan;
 use App\Models\Peserta;
 use App\Models\Category;
 use App\Models\Data;
+use App\Models\History;
 use Illuminate\Http\Request;
 use App\Models\PesananDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -175,6 +177,7 @@ class AuthController extends Controller
         } else {
             return redirect('/')->with(['warning' => 'Email / Password Salah']);
         }
+
     }
 
     public function proseslogout(){
@@ -205,6 +208,34 @@ class AuthController extends Controller
     }
     public function index()
     {
+        
+        $peserta_id = Auth::user()->id;
+        $mutable = Carbon::now();
+        $dateString = $mutable->format('Y-m-d H:i');
+        // dd($dateString);
+        $expired = History::where('peserta_id', $peserta_id)
+        ->where('status', 1)
+        ->pluck('expired')
+        ->map(function ($value) {
+            return substr($value, 0, 16); // Mengambil substring dari awal sampai karakter ke-16
+        });
+        // $expired = History::where('peserta_id', $peserta_id)
+        //     ->where('status', 1)
+        //     ->pluck('expired');
+        //     dd($expired);
+        $allExpiredEqual = $expired->every(function ($value) use ($dateString) {
+            return $value === $dateString;
+           
+        });
+
+        if ($allExpiredEqual) {
+            dd('Semua nilai kolom expired sama dengan tanggal yang diberikan.');
+        } else {
+            dd('Tidak semua nilai kolom expired sama dengan tanggal yang diberikan.');
+        }
+
+
+
         $pesanan = Pesanan::where('id_peserta', Auth::user()->id)->get();
         $list_peserta = Peserta::where('id', Auth::user()->id)->first();
         

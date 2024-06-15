@@ -20,6 +20,7 @@ class History extends Model
         'jumlah',
         'jumlah_harga',
         'status_masa_aktif',
+        'expired',
     ];
 
     public function peserta()

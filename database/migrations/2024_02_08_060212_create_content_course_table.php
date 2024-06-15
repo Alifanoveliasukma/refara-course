@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('nama_kursus');
             $table->string('nama_pembuat');
-            $table->string('akses');
+            $table->integer('akses');
             $table->string('category_id')->constrained();;
             $table->text('deskripsi_kursus');
             $table->integer('harga_kursus');
             $table->string('status')->default('0');
-           $table->string('durasi_kursus')->nullable();
+            $table->string('durasi_kursus')->nullable();
             $table->string('level')->nullable();
             $table->string('image')->nullable();
             $table->softDeletes();

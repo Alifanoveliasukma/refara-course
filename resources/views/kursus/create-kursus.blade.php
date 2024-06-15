@@ -53,7 +53,7 @@
         </div>
         <div class="mb-3">
             <label for="akses" class="form-label">Masa Berlaku:</label>
-            <input type="text" class="form-control" id="akses" name="akses" required>
+            <input type="number" class="form-control" id="akses" name="akses" required>
             @error('akses')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
